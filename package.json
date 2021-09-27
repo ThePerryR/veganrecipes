@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a fullstack javascript starter kit to quickly build web apps.",
   "scripts": {
-    "start": "node .",
+    "start": "node ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently --kill-others \"nodemon src\" \"cross-env NODE_ENV=development webpack serve\"",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config",
