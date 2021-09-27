@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "This is a fullstack javascript starter kit to quickly build web apps.",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others \"nodemon src\" \"webpack serve\""
+    "dev": "concurrently --kill-others \"nodemon src\" \"webpack serve\"",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config",
+    "heroku-postbuild": "npm rebuild; npm run build"
   },
   "author": "Integrity XD",
   "license": "MIT",
