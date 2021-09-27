@@ -47,7 +47,7 @@ const config = {
         exclude: /node_modules/,
         options: {
           cacheDirectory: true,
-          plugins: [process.env.NODE_ENV === 'production' && require.resolve('react-refresh/babel')].filter(Boolean)
+          plugins: [process.env.NODE_ENV !== 'production' && require.resolve('react-refresh/babel')].filter(Boolean)
         }
       }
     ]
