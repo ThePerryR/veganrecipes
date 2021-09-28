@@ -11,7 +11,7 @@ import Login from './pages/Login'
 import Recipe from './pages/Recipe'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
-import Footer from './sections/Footer'
+import Header from './sections/Header'
 import { useRootStore } from './RootStoreProvider'
 
 const GlobalStyle = createGlobalStyle`
@@ -129,6 +129,7 @@ function Router () {
           </Route>
         </Switch>
         <Main>
+          <Header/>
           <div style={{ flex: 1 }}>
             <Switch>
               <Route
@@ -163,7 +164,6 @@ function Router () {
               </Route>
             </Switch>
           </div>
-          <Footer/>
         </Main>
       </Wrapper>
     </React.Fragment>

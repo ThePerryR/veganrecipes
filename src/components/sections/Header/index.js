@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import {useRootStore} from '../../RootStoreProvider'
+import { useRootStore } from '../../RootStoreProvider'
+import UserDropdown from './UserDropdown'
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,7 +11,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   height: 64px;
   padding-left: 80px;
-  padding-right: 80px;
+  padding-right: 40px;
+  background: white;
 `
 
 const StyledLink = styled(Link)`
@@ -18,6 +20,7 @@ const StyledLink = styled(Link)`
 `
 const Left = styled.div``
 const Right = styled.div`
+  height: 100%;
   display: flex;
   align-items: center;
 
@@ -35,18 +38,21 @@ const Right = styled.div`
   }
 `
 
-function Footer () {
+function Header () {
   const { userStore } = useRootStore()
+  const currentUser = userStore.currentUser
   return (
     <Wrapper>
       <Left/>
       <Right>
-        {userStore.currentUser && <a style={{fontSize: 13}} href='/logout'><b>Logout</b></a>}
-        {!userStore.currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
-        <StyledLink to={userStore.currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
+        {!currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
+        <StyledLink to={!!currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
+        {currentUser &&
+        <UserDropdown user={currentUser}/>
+        }
       </Right>
     </Wrapper>
   )
 }
 
-export default Footer
+export default Header

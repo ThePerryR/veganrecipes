@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 488px;
-  padding: 56px 64px 24px 64px;
   box-sizing: border-box;
 
   background: #17D764;
@@ -62,6 +61,9 @@ const Footer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
 `
 
 function Landing () {
@@ -75,7 +77,7 @@ function Landing () {
 
       <Navigation />
 
-      <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+      <div style={{ flex: 1, width: '100%', position: 'relative', paddingLeft: 40, paddingRight: 40, boxSizing: 'border-box' }}>
         {currentUser &&
         <SidebarSection
           label="My Recipes"
