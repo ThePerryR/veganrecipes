@@ -61,7 +61,7 @@ function RecipeGrid ({ recipes }) {
   return (
     <Wrapper>
       {recipes.map(recipe => (
-        <Link key={recipe.id} to={`/r/${recipe.id}`}>
+        <Link key={recipe.id} to={`/r/${recipe.slug}`}>
           <Card key={recipe.id}>
             <Thumbnail>
               {recipe.images[0] &&
