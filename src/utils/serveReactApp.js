@@ -21,6 +21,10 @@ export default async function (req, res) {
     const recipes = await Recipe.find({}).populate('author', 'displayName')
     data.recipes = [...(data.recipes || []), ...recipes]
   }
+  if (req.url.includes('/r/')) {
+    //const recipes = await Recipe.find({}).populate('author', 'displayName')
+    //data.recipes = [...(data.recipes || []), ...recipes]
+  }
 
   const sheet = new ServerStyleSheet()
 

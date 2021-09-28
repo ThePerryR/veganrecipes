@@ -70,6 +70,7 @@ function Recipe () {
   }, [])
 
   const recipe = rootStore.recipeStore.find(id)
+  console.log(recipe.name)
 
   async function handleClickDelete () {
     await recipe.delete()
