@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Dropdown = styled.div`
   display: none;
+  flex-direction: column;
   position: absolute;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -24,7 +25,7 @@ const Wrapper = styled.div`
 
   &:hover {
     ${Dropdown} {
-      display: block;
+      display: flex;
     }
   }
 `
