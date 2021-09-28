@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 8px;
 `
 
 const StyledInput = styled.input`

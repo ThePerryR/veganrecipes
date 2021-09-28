@@ -77,7 +77,7 @@ function SidebarSection ({ label, recipes, emptyState }) {
         ? (
           <List>
             {recipes.map(recipe => (
-              <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+              <Link to={`/r/${recipe.id}`} key={recipe.id}>
                 <Recipe>
                   {recipe.name}
                 </Recipe>

@@ -43,7 +43,7 @@ function Footer () {
       <Right>
         {userStore.currentUser && <a style={{fontSize: 13}} href='/logout'><b>Logout</b></a>}
         {!userStore.currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
-        <StyledLink to={userStore.currentUser ? '/new' : '/register'}>Add a recipe</StyledLink>
+        <StyledLink to={userStore.currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
       </Right>
     </Wrapper>
   )

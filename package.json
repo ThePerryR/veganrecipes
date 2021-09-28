@@ -25,6 +25,8 @@
     "babel-plugin-styled-components": "^1.13.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.27.0",
+    "cloudinary-react": "^1.7.0",
     "concat": "^1.0.3",
     "concurrently": "^6.2.1",
     "connect-mongo": "^4.6.0",
@@ -44,12 +46,16 @@
     "process": "^0.11.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-dropzone": "^11.4.2",
+    "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-refresh": "^0.10.0",
     "react-router-dom": "^5.3.0",
     "regenerator-runtime": "^0.13.9",
+    "serve-favicon": "^2.5.0",
     "styled-components": "^5.3.1",
-    "styled-reset": "^4.3.4"
+    "styled-reset": "^4.3.4",
+    "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",

@@ -2,12 +2,14 @@ import React from 'react'
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
+import { Helmet } from 'react-helmet'
 
 import Landing from './pages/Landing'
 import NewRecipe from './pages/NewRecipe'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Recipe from './pages/Recipe'
+import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Footer from './sections/Footer'
 import { useRootStore } from './RootStoreProvider'
@@ -17,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Poppins', serif;
     -webkit-font-smoothing: antialiased;
+    background: #F6F7F9;
   }
 
   p {
@@ -42,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 64px;
     font-weight: 700;
   }
-  
+
   h5 {
     font-size: 24px;
     line-height: 40px;
@@ -93,6 +96,9 @@ function Router () {
   const location = useLocation()
   return (
     <React.Fragment>
+      <Helmet>
+        <title>EasyVgn</title>
+      </Helmet>
       <GlobalStyle/>
       <Wrapper>
         <Switch>
@@ -104,31 +110,34 @@ function Router () {
           <div style={{ flex: 1 }}>
             <Switch>
               <Route
-                path="/new"
+                path="/new-recipe"
                 render={({ location }) => !!currentUser
                   ? <NewRecipe/>
-                  : <Redirect to={{ pathname: "/", state: { from: location } }}/>
+                  : <Redirect to={{ pathname: '/', state: { from: location } }}/>
                 }
               />
               <Route
                 path="/register"
                 render={({ location }) => !!currentUser
-                  ? <Redirect to={{ pathname: "/", state: { from: location } }}/>
+                  ? <Redirect to={{ pathname: '/', state: { from: location } }}/>
                   : <Register/>
                 }
               />
               <Route
                 path="/login"
                 render={({ location }) => !!currentUser
-                  ? <Redirect to={{ pathname: "/", state: { from: location } }}/>
+                  ? <Redirect to={{ pathname: '/', state: { from: location } }}/>
                   : <Login/>
                 }
               />
-              <Route path="/recipe/:id">
-                <Recipe />
+              <Route path="/recipes/:view">
+                <Search/>
+              </Route>
+              <Route path="/r/:id">
+                <Recipe/>
               </Route>
               <Route path="/">
-                <Explore/>
+                <Search/>
               </Route>
             </Switch>
           </div>

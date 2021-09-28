@@ -11,7 +11,7 @@ export default class UserStore {
       recipes: observable
     })
     this.rootStore = rootStore
-    this.recipes = recipes.map(json => new Recipe(this, json))
+    recipes.forEach(this.addRecipeFromJSON)
   }
 
   find = (id) => this.recipes.find(recipe => recipe.id === id.toString())
@@ -38,6 +38,7 @@ export class Recipe {
   id = null
   name = ''
   description = ''
+  images = []
   _author = null
 
   constructor (store, json) {
@@ -51,9 +52,16 @@ export class Recipe {
   }
 
   updateFromJSON = (json) => {
-    this.name = json.name
-    this.description = json.description
-    this._author = json.author.toString()
+    this.name = json.name || ''
+    this.description = json.description || ''
+    this.images = json.images || []
+
+    if (json.author && typeof json.author === 'object' && json.author._id) {
+      this.store.rootStore.userStore.addUserFromJSON(json.author)
+      this._author = json.author._id.toString()
+    } else {
+      this._author = json.author.toString()
+    }
   }
 
   delete = async () => {
@@ -62,14 +70,15 @@ export class Recipe {
   }
 
   get author () {
-    return this.store.rootStore.UserStore.find(this._author)
+    return this.store.rootStore.userStore.find(this._author)
   }
 
   get asJSON () {
     return {
       _id: this.id,
       name: this.name,
-      description: this.description
+      description: this.description,
+      images: this.images
     }
   }
 }

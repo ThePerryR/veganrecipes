@@ -6,6 +6,7 @@ import { ServerStyleSheet } from 'styled-components'
 import Html from '../components/Html'
 import App from '../components/ServerApp'
 import Recipe from '../schemas/Recipe'
+import { Helmet } from 'react-helmet'
 
 export default async function (req, res) {
   const data = {}
@@ -16,10 +17,16 @@ export default async function (req, res) {
     data.recipes = recipes
   }
 
+  if (req.url === '/recipes/new') {
+    const recipes = await Recipe.find({}).populate('author', 'displayName')
+    data.recipes = [...(data.recipes || []), ...recipes]
+  }
+
   const sheet = new ServerStyleSheet()
 
   try {
     const app = ReactDOMServer.renderToString(sheet.collectStyles(<App initialState={data} url={req.url}/>))
+    const helmet = Helmet.renderStatic()
     const styleTags = sheet.getStyleElement()
     const doctype = '<!doctype html>\n'
     const markup = (
@@ -27,6 +34,7 @@ export default async function (req, res) {
         bundle={process.env.NODE_ENV !== 'development' ? '/client.js' : 'http://localhost:3001/client.js'}
         state={data}
         styleTags={styleTags}
+        helmet={helmet}
       />
     )
 

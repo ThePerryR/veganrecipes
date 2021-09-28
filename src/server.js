@@ -6,7 +6,7 @@ import MongoStore from 'connect-mongo'
 import session from 'express-session'
 import mongoose from 'mongoose'
 import passport from 'passport'
-import { Strategy as LocalStrategy } from 'passport-local'
+import favicon from 'serve-favicon'
 
 import serveReactApp from './utils/serveReactApp'
 import register from './utils/auth/register'
@@ -27,6 +27,7 @@ const store = MongoStore.create({ clientPromise })
 app.set('port', process.env.PORT || 3000)
 
 app.use(express.static(path.join(__dirname, './public')))
+app.use(favicon(path.join(__dirname, './public', 'favicon.ico')))
 // app.use(express.cookieParser());
 app.use(bodyParser.json())
 app.use(session({

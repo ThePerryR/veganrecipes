@@ -6,12 +6,13 @@ const Wrapper = styled.div`
 `
 
 const StyledTextarea = styled.textarea`
-  height: 215px;
+  height: 104px;
   width: 100%;
   box-sizing: border-box;
   padding-top: 40px;
   padding-left: 14px;
   padding-right: 14px;
+  font-family: 'Poppins', sans-serif;
 
   border: 1px solid #D4D4D4;
   border-radius: 4px;

@@ -7,6 +7,7 @@ import Button from '../../elements/Button'
 import Logo from '../../elements/Logo'
 import SearchBar from './SearchBar'
 import SidebarSection from './SidebarSection'
+import Navigation from './Navigation'
 
 const Wrapper = styled.div`
   position: sticky;
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 616px;
+  width: 488px;
   padding: 56px 64px 24px 64px;
   box-sizing: border-box;
 
@@ -48,14 +49,16 @@ const LogoSubTitle = styled.h1`
 
 const Palm = styled.img`
   position: absolute;
-  bottom: -56px;
-  left: -78px;
+  bottom: -2vw;
+  left: -2vw;
+  width: 88%;
   ${props => props.loggedIn && `
   opacity: 0.04;
   `}
 `
 
 const Footer = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -70,7 +73,9 @@ function Landing () {
 
       <SearchBar/>
 
-      <div style={{ flex: 1, width: '100%' }}>
+      <Navigation />
+
+      <div style={{ flex: 1, width: '100%', position: 'relative' }}>
         {currentUser &&
         <SidebarSection
           label="My Recipes"
