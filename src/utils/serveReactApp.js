@@ -2,33 +2,38 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
+import { Helmet } from 'react-helmet'
+import { resetServerContext } from 'react-beautiful-dnd'
 
 import Html from '../components/Html'
 import App from '../components/ServerApp'
 import Recipe from '../schemas/Recipe'
-import { Helmet } from 'react-helmet'
 
 export default async function (req, res) {
   const data = {}
   if (req.user) {
-    const recipes = await Recipe.find({author: req.user._id})
+    const recipes = await Recipe.find({ author: req.user._id })
     data.currentUserId = req.user._id.toString()
     data.users = [req.user]
     data.recipes = recipes
   }
 
-  if (req.url === '/recipes/new') {
+  if (req.url === '/recipes/new' || req.url === '/') {
     const recipes = await Recipe.find({}).populate('author', 'displayName')
     data.recipes = [...(data.recipes || []), ...recipes]
   }
   if (req.url.includes('/r/')) {
-    //const recipes = await Recipe.find({}).populate('author', 'displayName')
-    //data.recipes = [...(data.recipes || []), ...recipes]
+    const slug = req.url.substr(3, req.url.length)
+    const recipe = await Recipe.findOne({ slug }).populate('author', 'displayName')
+    if (recipe) {
+      data.recipes = [...(data.recipes || []), recipe]
+    }
   }
 
   const sheet = new ServerStyleSheet()
 
   try {
+    resetServerContext()
     const app = ReactDOMServer.renderToString(sheet.collectStyles(<App initialState={data} url={req.url}/>))
     const helmet = Helmet.renderStatic()
     const styleTags = sheet.getStyleElement()

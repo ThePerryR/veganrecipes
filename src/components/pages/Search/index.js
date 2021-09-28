@@ -25,7 +25,6 @@ function Search () {
   useEffect(() => {
     async function fetchRecipes () {
       const recipes = await transportLayer.fetchRecipes()
-      console.log('r', recipes)
       recipes.forEach(recipeStore.addRecipeFromJSON)
     }
 

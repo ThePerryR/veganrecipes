@@ -5,6 +5,8 @@ import { Image } from 'cloudinary-react'
 import styled from 'styled-components'
 
 import { useRootStore } from '../../RootStoreProvider'
+import IngredientList from './IngredientList'
+import InstructionList from './InstructionList'
 
 const Wrapper = styled.div`
   padding: 56px;
@@ -12,6 +14,7 @@ const Wrapper = styled.div`
 
 const Overview = styled.div`
   display: flex;
+  margin-bottom: 64px;
 `
 
 const Photos = styled.div`
@@ -52,29 +55,45 @@ const Description = styled.p`
   line-height: 32px;
 `
 
+const Requirements = styled.div`
+  display: flex;
+`
+
 function Recipe () {
   const rootStore = useRootStore()
   const { id } = useParams()
   const history = useHistory()
+  const [missing, setMissing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
 
   useEffect(() => {
     async function fetchRecipe () {
       const json = await rootStore.transportLayer.fetchRecipe(id)
+      console.log('loadded', json)
+      if (!json) {
+        return setMissing(true)
+      }
       rootStore.recipeStore.addRecipeFromJSON(json)
     }
 
+    console.log('load')
     if (!rootStore.recipeStore.find(id)) {
+      console.log('fetching')
       fetchRecipe()
     }
   }, [])
 
-  const recipe = rootStore.recipeStore.find(id)
-  console.log(recipe.name)
+  const recipe = rootStore.recipeStore.findBySlug(id)
 
   async function handleClickDelete () {
     await recipe.delete()
     history.push('/')
+  }
+
+  if (missing) {
+    return (
+      <div>Sorry, this recipe could not be found.</div>
+    )
   }
 
   if (!recipe) {
@@ -115,8 +134,12 @@ function Recipe () {
           <Description>{recipe.description}</Description>
         </Details>
       </Overview>
+      <Requirements>
+        <IngredientList ingredients={recipe.ingredients}/>
+        <InstructionList instructions={recipe.instructions} />
+      </Requirements>
       {admin &&
-      <div style={{marginTop: 64}}>
+      <div style={{ marginTop: 64 }}>
         <div onClick={handleClickDelete}>Delete</div>
       </div>
       }

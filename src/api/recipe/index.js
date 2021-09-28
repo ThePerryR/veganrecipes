@@ -10,7 +10,7 @@ const router = Router({ mergeParams: true })
 
 router.post('/', createRecipe)
 router.get('/', fetchRecipes)
-router.get('/:id', fetchRecipe)
+router.get('/:slug', fetchRecipe)
 router.delete('/:id', deleteRecipe)
 
 export default router

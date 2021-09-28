@@ -92,7 +92,6 @@ let uploadWidget
 function UploadImages ({images, addImage}) {
 
   const widgetCallback = (err, result) => {
-    console.log(1, images.length)
     if (err) {
       return console.log(err)
     }

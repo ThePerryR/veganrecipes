@@ -12,8 +12,6 @@ function FilterViews () {
 
   const history = useHistory()
 
-  console.log('v', view)
-
   return (
     <Wrapper>
       <Select

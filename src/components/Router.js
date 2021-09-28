@@ -67,6 +67,28 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     width: 100%;
     transition: all 120ms linear;
+    font-family: 'Poppins', sans-serif;
+
+    ::placeholder {
+      color: #D4D4D4;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid #17D764;
+    }
+  }
+  textarea {
+    height: 80px;
+    border: 1px solid #C0C9D0;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 8px 17px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: all 120ms linear;
+    resize: none;
+    font-family: 'Poppins', sans-serif;
 
     ::placeholder {
       color: #D4D4D4;

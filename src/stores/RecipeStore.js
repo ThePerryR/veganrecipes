@@ -15,6 +15,7 @@ export default class UserStore {
   }
 
   find = (id) => this.recipes.find(recipe => recipe.id === id.toString())
+  findBySlug = (slug) => this.recipes.find(recipe => recipe.slug === slug)
 
   addRecipeFromJSON = (json) => {
     let recipe = this.find(json._id)
@@ -38,13 +39,17 @@ export class Recipe {
   id = null
   name = ''
   description = ''
+  slug = ''
+  ingredients = []
+  instructions = ''
   images = []
   _author = null
 
   constructor (store, json) {
     makeObservable(this, {
       name: observable,
-      description: observable
+      description: observable,
+      slug: observable
     })
     this.id = json._id.toString()
     this.store = store
@@ -54,6 +59,9 @@ export class Recipe {
   updateFromJSON = (json) => {
     this.name = json.name || ''
     this.description = json.description || ''
+    this.slug = json.slug || ''
+    this.ingredients = json.ingredients || []
+    this.instructions = json.instructions || []
     this.images = json.images || []
 
     if (json.author && typeof json.author === 'object' && json.author._id) {
@@ -77,8 +85,11 @@ export class Recipe {
     return {
       _id: this.id,
       name: this.name,
+      slug: this.slug,
       description: this.description,
-      images: this.images
+      images: this.images,
+      ingredients: this.ingredients,
+      instructions: this.instructions
     }
   }
 }

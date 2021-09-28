@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Image } from 'cloudinary-react'
+import { observer } from 'mobx-react'
 
 const Wrapper = styled.ol`
   display: grid;
@@ -16,16 +18,16 @@ const Card = styled.li`
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: all 120ms linear;
-  
+
   &:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 `
 
 const Thumbnail = styled.div`
   position: relative;
   height: 0;
-  padding-bottom: 75%;
+  padding-bottom: 100%;
   background-color: #020409;
 `
 
@@ -61,7 +63,17 @@ function RecipeGrid ({ recipes }) {
       {recipes.map(recipe => (
         <Link key={recipe.id} to={`/r/${recipe.id}`}>
           <Card key={recipe.id}>
-            <Thumbnail/>
+            <Thumbnail>
+              {recipe.images[0] &&
+              <Image
+                cloudName="easyvgn"
+                publicId={recipe.images[0]}
+                crop="crop"
+                gravity="custom"
+                style={{ width: '100%' }}
+              />
+              }
+            </Thumbnail>
             <Details>
               <ProfilePicture/>
               <div>
@@ -80,4 +92,4 @@ function RecipeGrid ({ recipes }) {
 
 RecipeGrid.propTypes = {}
 
-export default RecipeGrid
+export default observer(RecipeGrid)

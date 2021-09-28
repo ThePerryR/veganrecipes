@@ -30,7 +30,7 @@ const StyledLink = styled(Link)`
 function Navigation () {
   return (
     <Wrapper>
-      <StyledLink to='/recipes/new'>New</StyledLink>
+      <StyledLink to='/'>Browse Recipes</StyledLink>
     </Wrapper>
   )
 }
