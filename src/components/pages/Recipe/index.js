@@ -147,8 +147,9 @@ function Recipe () {
     <Wrapper>
       <Helmet>
         <title>{recipe.name} | EasyVgn</title>
-        <meta property="og:title" content={`${recipe.name} | EasyVgn`}/>
         <meta property="og:type" content="website"/>
+        <meta property="og:title" content={`${recipe.name} | EasyVgn`}/>
+        <meta property="og:description" content={recipe.description}/>
         <meta property="og:url" content={`https://www.easyvgn.com/r/${recipe.slug}`}/>
         <meta
           property="og:image"
