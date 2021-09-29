@@ -160,7 +160,7 @@ function Recipe () {
           {JSON.stringify({
             '@context': 'https://schema.org/',
             '@type': 'Recipe',
-            'name': 'Party Coffee Cake',
+            'name': recipe.name,
             'image': [
               recipe.images.map(id => `https://res.cloudinary.com/easyvgn/image/upload/c_crop,g_custom/${id}.jpg`)
             ],
