@@ -61,6 +61,7 @@ function Account () {
     currentUser.displayName = displayName
     await rootStore.transportLayer.updateUser(currentUser.id, currentUser.asJSON)
     setSaving(false)
+    rootStore.notyf.success('Your profile has been updated.')
   }
 
   return (

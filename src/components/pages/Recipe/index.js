@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { Image } from 'cloudinary-react'
 import styled from 'styled-components'
@@ -9,6 +9,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useRootStore } from '../../RootStoreProvider'
 import IngredientList from './IngredientList'
 import InstructionList from './InstructionList'
+import ProfilePicture from '../../elements/ProfilePicture'
 
 const Wrapper = styled.div`
   padding: 56px;
@@ -50,7 +51,7 @@ const Title = styled.h1`
   line-height: 64px;
   font-weight: 700;
   color: #303030;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 `
 const Description = styled.p`
   font-size: 16px;
@@ -84,6 +85,16 @@ const ShareButton = styled.div`
   font-size: 14px;
   cursor: pointer;
   background: white;
+`
+
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+`
+const AuthorName = styled.div`
+  font-size: 15px;
+  font-weight: 500;
 `
 
 function Recipe () {
@@ -160,6 +171,12 @@ function Recipe () {
 
         <Details>
           <Title>{recipe.name}</Title>
+          <Link to={`/u/${recipe.author.id}`}>
+            <Profile>
+              <ProfilePicture id={recipe.author.profilePicture} size={24} styles={{ marginRight: 6 }}/>
+              <AuthorName>{recipe.author.displayName}</AuthorName>
+            </Profile>
+          </Link>
           <Description>{recipe.description}</Description>
           <Buttons>
             <div/>

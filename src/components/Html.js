@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Html = ({ state, bundle, app, styleTags, helmet }) => {
-  const htmlAttrs = helmet.htmlAttributes.toComponent();
-  const bodyAttrs = helmet.bodyAttributes.toComponent();
+  const htmlAttrs = helmet.htmlAttributes.toComponent()
+  const bodyAttrs = helmet.bodyAttributes.toComponent()
   return (
     <html lang="en">
     <head {...htmlAttrs}>
