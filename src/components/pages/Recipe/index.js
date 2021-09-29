@@ -183,7 +183,7 @@ function Recipe () {
             <Share>
               <span style={{ marginRight: 12, fontWeight: 500, fontSize: 14 }}>Share:</span>
               <CopyToClipboard
-                text={`https://www.easyvgn.com/r/${recipe.id}`}
+                text={`https://www.easyvgn.com/r/${recipe.slug}`}
                 onCopy={() => {
                   rootStore.notyf.success('Recipe url has been copied to your clipboard!')
                 }}>
