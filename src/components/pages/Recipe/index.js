@@ -147,6 +147,7 @@ function Recipe () {
     <Wrapper>
       <Helmet>
         <title>{recipe.name} | EasyVgn</title>
+        <mete name="description" content={recipe.description}/>
         <meta property="og:type" content="website"/>
         <meta property="og:title" content={`${recipe.name} | EasyVgn`}/>
         <meta property="og:description" content={recipe.description}/>
@@ -155,6 +156,48 @@ function Recipe () {
           property="og:image"
           content={recipe.images[0] ? `https://res.cloudinary.com/easyvgn/image/upload/w_1200,h_627,c_fill/${recipe.images[0]}.jpg` : 'https://www.easyvgn.com/main-card.jpg'}
         />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org/',
+            '@type': 'Recipe',
+            'name': 'Party Coffee Cake',
+            'image': [
+              recipe.images.map(id => `https://res.cloudinary.com/easyvgn/image/upload/c_crop,g_custom/${id}.jpg`)
+            ],
+            'author': {
+              '@type': 'Person',
+              'name': recipe.author.displayName
+            },
+            // 'datePublished': '2018-03-10',
+            'description': recipe.description,
+            // 'prepTime': 'PT20M',
+            // 'cookTime': 'PT30M',
+            // 'totalTime': 'PT50M',
+            // 'keywords': 'cake for a party, coffee',
+            // 'recipeYield': '10',
+            // 'recipeCategory': 'Dessert',
+            // 'recipeCuisine': 'American',
+            /*
+            'nutrition': {
+              '@type': 'NutritionInformation',
+              'calories': '270 calories'
+            },*/
+            'recipeIngredient': recipe.ingredients,
+            'recipeInstructions': recipe.instructions.map((instruction, i) => ({
+              '@type': 'HowToStep',
+              'name': `Step ${i + 1}`,
+              'text': instruction,
+              'url': `https://www.easyvegan.com/r/${recipe.slug}#step${i + 1}`,
+              // 'image': 'https://example.com/photos/party-coffee-cake/step1.jpg'
+            })),
+            /*
+            'aggregateRating': {
+              '@type': 'AggregateRating',
+              'ratingValue': '5',
+              'ratingCount': '18'
+            },*/
+          })}
+        </script>
       </Helmet>
       <Overview>
         <Photos>

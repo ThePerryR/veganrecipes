@@ -80,6 +80,7 @@ const GlobalStyle = createGlobalStyle`
       border: 1px solid #17D764;
     }
   }
+
   textarea {
     height: 80px;
     border: 1px solid #C0C9D0;
@@ -122,12 +123,14 @@ function Router () {
     <React.Fragment>
       <Helmet>
         <title>Browse vegan recipes | EasyVgn</title>
-        <meta property="og:title" content="Browse vegan recipes | EasyVgn" />
-        <meta property="og:type" content="website" />
+        <mete name="description" content="Discover and share plant-based recipes with our community of vegans."/>
+        <meta property="og:title" content="Browse vegan recipes | EasyVgn"/>
+        <meta property="og:type" content="website"/>
         <meta property="og:description" content="Discover and share plant-based recipes with our community of vegans."/>
         <meta property="fb:app_id" content="602901140835407"/>
-        <meta property="og:url" content="https://www.easyvgn.com/" />
-        <meta property="og:image" content="https://www.easyvgn.com/main-card.jpg" />
+        <meta property="og:url" content="https://www.easyvgn.com/"/>
+        <meta property="og:image" content="https://www.easyvgn.com/main-card.jpg"/>
+
       </Helmet>
       <GlobalStyle/>
       <Wrapper>
