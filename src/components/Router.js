@@ -121,7 +121,11 @@ function Router () {
   return (
     <React.Fragment>
       <Helmet>
-        <title>EasyVgn</title>
+        <title>Browse vegan recipes | EasyVgn</title>
+        <meta property="og:title" content="Browse vegan recipes | EasyVgn" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.easyvgn.com/" />
+        <meta property="og:image" content="https://www.easyvgn.com/main-card.jpg" />
       </Helmet>
       <GlobalStyle/>
       <Wrapper>
