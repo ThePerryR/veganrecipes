@@ -13,6 +13,7 @@ import register from './utils/auth/register'
 import login from './utils/auth/login'
 import User from './schemas/User'
 import api from './api'
+import generateSitemap from './utils/generateSitemap'
 
 dotEnv.config()
 
@@ -44,6 +45,9 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.listen(app.get('port'), () => console.log('Listening on port: ', app.get('port')))
+
+app.get('/sitemap.xml', generateSitemap)
+
 
 app.post('/register', register)
 app.post('/login', login)
