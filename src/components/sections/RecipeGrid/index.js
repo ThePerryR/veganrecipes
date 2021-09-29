@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
 import { observer } from 'mobx-react'
+import ProfilePicture from '../../elements/ProfilePicture'
 
 const Wrapper = styled.ol`
   display: grid;
@@ -37,14 +38,6 @@ const Details = styled.div`
   padding: 24px 10px;
 `
 
-const ProfilePicture = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #020409;
-  margin-right: 16px;
-`
-
 const Name = styled.div`
   font-size: 16px;
   line-height: 24px;
@@ -75,7 +68,11 @@ function RecipeGrid ({ recipes }) {
               }
             </Thumbnail>
             <Details>
-              <ProfilePicture/>
+              <ProfilePicture
+                size={48}
+                id={recipe.author.profilePicture}
+                styles={{ flexShrink: 0, marginRight: 8 }}
+              />
               <div>
                 <Name>{recipe.name}</Name>
                 {recipe.author &&

@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Image } from 'cloudinary-react'
 import { AiFillDelete } from 'react-icons/ai'
 
+import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
+
 import Gallery from '../../sections/Gallery'
 
 const Wrapper = styled.div`
@@ -89,8 +91,7 @@ const DeleteIcon = styled(AiFillDelete)`
 
 let uploadWidget
 
-function UploadImages ({images, addImage}) {
-
+function UploadImages ({images, addImage, deleteImage}) {
   const widgetCallback = (err, result) => {
     if (err) {
       return console.log(err)
@@ -107,18 +108,7 @@ function UploadImages ({images, addImage}) {
       cropping_aspect_ratio: 1,
       showSkipCropButton: false,
       sources: ['local', 'url', 'facebook', 'instagram'],
-      styles: {
-        palette: {
-          textLight: '#FFFFFF',
-          link: '#D76817',
-          action: '#007bcc',
-          inactiveTabIcon: '#0E2F5A',
-          error: '#F44235',
-          inProgress: '#0078FF',
-          complete: '#17D764',
-          sourceBg: '#F6F7F9'
-        }
-      }
+      styles: uploadWidgetStyles
     }, (err, result) => widgetCallback(err, result))
   }, [images])
 
@@ -131,11 +121,7 @@ function UploadImages ({images, addImage}) {
             <StyledImage cloudName="easyvgn" publicId={publicId} crop="crop" gravity="custom"/>
             <ImageOverlay>
               <DeleteIcon
-                onClick={() => {
-                  const newImages = [...images]
-                  newImages.splice(i, 1)
-                  setImages(newImages)
-                }}
+                onClick={() => deleteImage(i)}
               />
             </ImageOverlay>
           </ImageWrapper>

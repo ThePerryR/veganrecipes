@@ -43,11 +43,13 @@ export class User {
   id = null
   email = ''
   displayName = ''
+  profilePicture = null
 
   constructor (store, json) {
     makeObservable(this, {
       email: observable,
-      displayName: observable
+      displayName: observable,
+      profilePicture: observable
     })
     this.id = json._id.toString()
     this.store = store
@@ -55,15 +57,18 @@ export class User {
   }
 
   updateFromJSON = (json) => {
+    console.log(1, json)
     this.email = json.email
     this.displayName = json.displayName
+    this.profilePicture = json.profilePicture
   }
 
   get asJSON () {
     return {
       _id: this.id,
       email: this.email,
-      displayName: this.displayName
+      displayName: this.displayName,
+      profilePicture: this.profilePicture
     }
   }
 }

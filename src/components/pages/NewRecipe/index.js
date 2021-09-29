@@ -63,6 +63,11 @@ function NewRecipe () {
         addImage={publicId => {
           setImages([...images, publicId])
         }}
+        deleteImage={index => {
+          const newImages = [...images]
+          newImages.splice(index, 1)
+          setImages(newImages)
+        }}
       />
       <Requirments>
         <IngredientsEditor

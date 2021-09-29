@@ -8,25 +8,33 @@ import { resetServerContext } from 'react-beautiful-dnd'
 import Html from '../components/Html'
 import App from '../components/ServerApp'
 import Recipe from '../schemas/Recipe'
+import mongoose from 'mongoose'
 
 export default async function (req, res) {
   const data = {}
   if (req.user) {
-    const recipes = await Recipe.find({ author: req.user._id })
+    const recipes = await Recipe.find({ author: req.user._id }).lean()
     data.currentUserId = req.user._id.toString()
     data.users = [req.user]
     data.recipes = recipes
   }
 
   if (req.url === '/recipes/new' || req.url === '/') {
-    const recipes = await Recipe.find({}).populate('author', 'displayName')
+    const recipes = await Recipe.find({}).populate('author', 'displayName profilePicture')
     data.recipes = [...(data.recipes || []), ...recipes]
   }
   if (req.url.includes('/r/')) {
     const slug = req.url.substr(3, req.url.length)
-    const recipe = await Recipe.findOne({ slug }).populate('author', 'displayName')
+    const recipe = await Recipe.findOne({ slug }).populate('author', 'displayName profilePicture')
     if (recipe) {
       data.recipes = [...(data.recipes || []), recipe]
+    }
+  }
+  if (req.url.includes('/u/')) {
+    const id = req.url.substr(3, req.url.length)
+    if (!req.user || !req.user._id.equals(id)) {
+      const recipes = await Recipe.find({ author: mongoose.Types.ObjectId(id) })
+      data.recipes = [...(data.recipes || []), ...recipes]
     }
   }
 

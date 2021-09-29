@@ -13,6 +13,8 @@ import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Header from './sections/Header'
 import { useRootStore } from './RootStoreProvider'
+import Profile from './pages/Profile'
+import Account from './pages/Account'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -158,6 +160,12 @@ function Router () {
               </Route>
               <Route path="/r/:id">
                 <Recipe/>
+              </Route>
+              <Route path="/u/:id">
+                <Profile/>
+              </Route>
+              <Route path="/account">
+                <Account/>
               </Route>
               <Route path="/">
                 <Search/>

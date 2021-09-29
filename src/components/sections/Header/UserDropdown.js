@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import ProfilePicture from '../../elements/ProfilePicture'
+import { observer } from 'mobx-react'
 
 const Dropdown = styled.div`
   display: none;
@@ -29,12 +31,6 @@ const Wrapper = styled.div`
     }
   }
 `
-const Picture = styled.div`
-  background: grey;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`
 
 const Arrow = styled.div`
   position: absolute;
@@ -60,10 +56,13 @@ function UserDropdown ({ user }) {
   return (
     <Wrapper>
       <Link to={`/u/${user.id}`}>
-        <Picture/>
+        <ProfilePicture id={user.profilePicture} size={40}/>
       </Link>
       <Dropdown>
         <Arrow/>
+        <Link to={`/u/${user.id}`}>
+          <Option>Profile</Option>
+        </Link>
         <a href="/logout" style={{ textDecoration: 'none' }}>
           <Option>Logout</Option>
         </a>
@@ -74,4 +73,4 @@ function UserDropdown ({ user }) {
 
 UserDropdown.propTypes = {}
 
-export default UserDropdown
+export default observer(UserDropdown)

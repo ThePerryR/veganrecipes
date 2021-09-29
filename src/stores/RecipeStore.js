@@ -16,6 +16,7 @@ export default class UserStore {
 
   find = (id) => this.recipes.find(recipe => recipe.id === id.toString())
   findBySlug = (slug) => this.recipes.find(recipe => recipe.slug === slug)
+  filterByAuthor = (userId) => this.recipes.filter(recipe => recipe._author === userId)
 
   addRecipeFromJSON = (json) => {
     let recipe = this.find(json._id)
@@ -64,7 +65,7 @@ export class Recipe {
     this.instructions = json.instructions || []
     this.images = json.images || []
 
-    if (json.author && typeof json.author === 'object' && json.author._id) {
+    if (json.author && typeof json.author === 'object' && json.author.displayName) {
       this.store.rootStore.userStore.addUserFromJSON(json.author)
       this._author = json.author._id.toString()
     } else {

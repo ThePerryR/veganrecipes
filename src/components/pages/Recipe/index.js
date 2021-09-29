@@ -3,6 +3,8 @@ import { useHistory, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { Image } from 'cloudinary-react'
 import styled from 'styled-components'
+import { AiOutlineLink } from 'react-icons/ai'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { useRootStore } from '../../RootStoreProvider'
 import IngredientList from './IngredientList'
@@ -53,10 +55,35 @@ const Title = styled.h1`
 const Description = styled.p`
   font-size: 16px;
   line-height: 32px;
+  margin-bottom: 40px;
 `
 
 const Requirements = styled.div`
   display: flex;
+`
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const Share = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const ShareButton = styled.div`
+  height: 40px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px solid #cbcbcb;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  background: white;
 `
 
 function Recipe () {
@@ -129,14 +156,29 @@ function Recipe () {
             ))}
           </PhotosList>
         </Photos>
+
         <Details>
           <Title>{recipe.name}</Title>
           <Description>{recipe.description}</Description>
+          <Buttons>
+            <div/>
+            <Share>
+              <span style={{ marginRight: 12, fontWeight: 500, fontSize: 14 }}>Share:</span>
+              <CopyToClipboard
+                text={`https://www.easyvgn.com/r/${recipe.id}`}
+                onCopy={() => {}}>
+                <ShareButton>
+                  <AiOutlineLink size={18} style={{ marginRight: 6 }}/>
+                  <span>Share URL</span>
+                </ShareButton>
+              </CopyToClipboard>
+            </Share>
+          </Buttons>
         </Details>
       </Overview>
       <Requirements>
         <IngredientList ingredients={recipe.ingredients}/>
-        <InstructionList instructions={recipe.instructions} />
+        <InstructionList instructions={recipe.instructions}/>
       </Requirements>
       {admin &&
       <div style={{ marginTop: 64 }}>
