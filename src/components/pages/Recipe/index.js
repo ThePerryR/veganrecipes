@@ -10,6 +10,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import IngredientList from './IngredientList'
 import InstructionList from './InstructionList'
 import ProfilePicture from '../../elements/ProfilePicture'
+import { Helmet } from 'react-helmet'
 
 const Wrapper = styled.div`
   padding: 56px;
@@ -144,6 +145,16 @@ function Recipe () {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{recipe.name} | EasyVgn</title>
+        <meta property="og:title" content={`${recipe.name} | EasyVgn`}/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content={`https://www.easyvgn.com/r/${recipe.slug}`}/>
+        <meta
+          property="og:image"
+          content={recipe.images[0] ? `https://res.cloudinary.com/easyvgn/image/upload/w_1200,h_627,c_fill/${recipe.images[0]}.jpg` : 'https://www.easyvgn.com/main-card.jpg'}
+        />
+      </Helmet>
       <Overview>
         <Photos>
           {recipe.images[imageIndex] &&
