@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { Image } from 'cloudinary-react'
@@ -90,6 +90,7 @@ function Recipe () {
   const rootStore = useRootStore()
   const { id } = useParams()
   const history = useHistory()
+  let notyf
   const [missing, setMissing] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
 
@@ -166,7 +167,9 @@ function Recipe () {
               <span style={{ marginRight: 12, fontWeight: 500, fontSize: 14 }}>Share:</span>
               <CopyToClipboard
                 text={`https://www.easyvgn.com/r/${recipe.id}`}
-                onCopy={() => {}}>
+                onCopy={() => {
+                  rootStore.notyf.success('Recipe url has been copied to your clipboard!')
+                }}>
                 <ShareButton>
                   <AiOutlineLink size={18} style={{ marginRight: 6 }}/>
                   <span>Share URL</span>

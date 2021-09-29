@@ -5,8 +5,8 @@ import RootStore from '../stores/RootStore'
 let store
 const StoreContext = createContext(undefined)
 
-function RootStoreProvider({ initialState, children}) {
-  const root = store || new RootStore(initialState)
+function RootStoreProvider({ initialState, children, notyf}) {
+  const root = store || new RootStore(initialState, notyf)
   return <StoreContext.Provider value={root}>{children}</StoreContext.Provider>
 }
 

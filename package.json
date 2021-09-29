@@ -40,6 +40,7 @@
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
     "mongoose": "^6.0.7",
+    "notyf": "^3.10.0",
     "number-to-words": "^1.2.4",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",

@@ -23,6 +23,7 @@ const Html = ({ state, bundle, app, styleTags, helmet }) => {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
             rel="stylesheet"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
 
       {styleTags}
     </head>
@@ -30,6 +31,7 @@ const Html = ({ state, bundle, app, styleTags, helmet }) => {
     <div id="app"/>
     <script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"/>
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"/>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"/>
     <script id="is" type="application/json">{JSON.stringify(state)}</script>
     <script src={bundle}/>
     </body>
