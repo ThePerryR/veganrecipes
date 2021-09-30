@@ -38,7 +38,7 @@ function HelmetOptions ({ recipe }) {
           keywords: 'vegan',
           // 'recipeYield': '10',
           // 'recipeCategory': 'Dessert',
-          // 'recipeCuisine': 'American',
+          'recipeCuisine': 'Vegan',
           /*
           'nutrition': {
             '@type': 'NutritionInformation',
