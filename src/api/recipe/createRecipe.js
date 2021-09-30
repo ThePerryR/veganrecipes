@@ -2,7 +2,7 @@ import slugify from 'slugify'
 import Recipe from '../../schemas/Recipe'
 
 async function createRecipe (req, res) {
-  let slug = slugify(req.body.name, { lower: true, strict: true })
+  const slug = slugify(req.body.name, { lower: true, strict: true })
   let unique = false
   let number = 0
   while (!unique) {

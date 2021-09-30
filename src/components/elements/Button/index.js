@@ -55,7 +55,10 @@ function Button ({ label, text, style, onClick, disabled }) {
 
 Button.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  text: PropTypes.bool
+  text: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  style: PropTypes.object
 }
 
 export default Button

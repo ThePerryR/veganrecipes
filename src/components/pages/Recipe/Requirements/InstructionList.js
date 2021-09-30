@@ -4,9 +4,18 @@ import styled from 'styled-components'
 import converter from 'number-to-words'
 
 const Wrapper = styled.div`
-  width: 50%;
-  padding-right: 40px;
+  flex: 1;
   box-sizing: border-box;
+  padding-left: 56px;
+
+
+  @media (max-width: 1000px) {
+    padding-left: 40px;
+  }
+  @media (max-width: 720px) {
+    width: 100%;
+    padding-left: 0;
+  }
 `
 
 const List = styled.ol`
@@ -40,8 +49,8 @@ const Label = styled.h2`
   font-weight: 500;
   color: #3a3a3a;
 `
-function cap(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function cap (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 function InstructionList ({ instructions }) {
@@ -62,6 +71,8 @@ function InstructionList ({ instructions }) {
   )
 }
 
-InstructionList.propTypes = {}
+InstructionList.propTypes = {
+  instructions: PropTypes.arrayOf(PropTypes.string).isRequired
+}
 
 export default InstructionList

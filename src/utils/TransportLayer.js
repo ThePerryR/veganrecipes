@@ -15,4 +15,5 @@ export default class TransportLayer {
   fetchRecipes = (query) => this.fetch('/api/recipe', 'get', null, query)
   fetchRecipe = (id) => this.fetch(`/api/recipe/${id}`)
   deleteRecipe = (id) => this.fetch(`/api/recipe/${id}`, 'DELETE')
+  reviewRecipe = (id, userId, stars) => this.fetch(`/api/recipe/${id}/review`, 'POST', { userId, stars })
 }

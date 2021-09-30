@@ -1,8 +1,7 @@
+import Recipes from '../schemas/Recipe'
+
 const { SitemapStream, streamToPromise } = require('sitemap')
 const { createGzip } = require('zlib')
-const { Readable } = require('stream')
-
-import Recipes from '../schemas/Recipe'
 
 let sitemap
 
@@ -19,7 +18,6 @@ async function generateSitemap (req, res) {
     const smStream = new SitemapStream({ hostname: 'https://www.easyvgn.com/' })
     const pipeline = smStream.pipe(createGzip())
 
-
     smStream.write({ url: '/' })
     smStream.write({ url: '/recipes/new' })
     smStream.write({ url: '/recipes/popular' })
@@ -29,11 +27,13 @@ async function generateSitemap (req, res) {
     }
 
     // cache the response
-    streamToPromise(pipeline).then(sm => sitemap = sm)
+    streamToPromise(pipeline).then(sm => {
+      sitemap = sm
+    })
     // make sure to attach a write stream such as streamToPromise before ending
     smStream.end()
     // stream write the response
-    pipeline.pipe(res).on('error', (e) => {throw e})
+    pipeline.pipe(res).on('error', (e) => { throw e })
   } catch (e) {
     console.error(e)
     res.status(500).end()

@@ -1,31 +1,31 @@
-import { renderToStaticMarkup } from 'react-dom/server'
+import ReactDOMServer, { renderToStaticMarkup } from 'react-dom/server'
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { resetServerContext } from 'react-beautiful-dnd'
+import mongoose from 'mongoose'
 
 import Html from '../components/Html'
 import App from '../components/ServerApp'
 import Recipe from '../schemas/Recipe'
-import mongoose from 'mongoose'
+import populateAuthorAndRating from './pipelines/populateAuthorAndRating'
 
 export default async function (req, res) {
   const data = {}
   if (req.user) {
-    const recipes = await Recipe.find({ author: req.user._id }).lean()
+    const recipes = await Recipe.aggregate([{ $match: { author: req.user._id } }, ...populateAuthorAndRating])
     data.currentUserId = req.user._id.toString()
     data.users = [req.user]
     data.recipes = recipes
   }
 
   if (req.url === '/recipes/new' || req.url === '/') {
-    const recipes = await Recipe.find({}).populate('author', 'displayName profilePicture')
+    const recipes = await Recipe.aggregate(populateAuthorAndRating)
     data.recipes = [...(data.recipes || []), ...recipes]
   }
   if (req.url.includes('/r/')) {
     const slug = req.url.substr(3, req.url.length)
-    const recipe = await Recipe.findOne({ slug }).populate('author', 'displayName profilePicture')
+    const [recipe] = await Recipe.aggregate([{ $match: { slug } }, ...populateAuthorAndRating])
     if (recipe) {
       data.recipes = [...(data.recipes || []), recipe]
     }
@@ -33,7 +33,7 @@ export default async function (req, res) {
   if (req.url.includes('/u/')) {
     const id = req.url.substr(3, req.url.length)
     if (!req.user || !req.user._id.equals(id)) {
-      const recipes = await Recipe.find({ author: mongoose.Types.ObjectId(id) })
+      const recipes = await Recipe.aggregate([{ $match: { author: mongoose.Types.ObjectId(id) } }, ...populateAuthorAndRating])
       data.recipes = [...(data.recipes || []), ...recipes]
     }
   }

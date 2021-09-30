@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Html = ({ state, bundle, app, styleTags, helmet }) => {
+const Html = ({ state, bundle, styleTags, helmet }) => {
   const htmlAttrs = helmet.htmlAttributes.toComponent()
   const bodyAttrs = helmet.bodyAttributes.toComponent()
   return (
@@ -41,7 +41,9 @@ const Html = ({ state, bundle, app, styleTags, helmet }) => {
 
 Html.propTypes = {
   state: PropTypes.object,
-  bundle: PropTypes.string.isRequired
+  bundle: PropTypes.string.isRequired,
+  styleTags: PropTypes.array.isRequired,
+  helmet: PropTypes.object.isRequired
 }
 
 export default Html

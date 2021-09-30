@@ -48,7 +48,7 @@ function Register () {
     if (password.length < 6) return setError(<span>Your <b>password</b> must be at least 6 characters.</span>)
     setSubmitting(true)
     try {
-      const { success, user } = await store.transportLayer.register(email, password, displayName)
+      const { success } = await store.transportLayer.register(email, password, displayName)
       if (success) {
         window.location.reload()
       }

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Image } from 'cloudinary-react'
 
 import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
 import { useRootStore } from '../../RootStoreProvider'

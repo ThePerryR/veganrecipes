@@ -14,7 +14,8 @@ function Logo ({ height, full }) {
 }
 
 Logo.propTypes = {
-  height: PropTypes.number
+  height: PropTypes.number,
+  full: PropTypes.bool
 }
 Logo.defaultProps = {
   height: 18

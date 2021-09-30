@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Image } from 'cloudinary-react'
 import { AiFillDelete } from 'react-icons/ai'
 
 import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
-
-import Gallery from '../../sections/Gallery'
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,11 +14,12 @@ const Wrapper = styled.div`
 
 const Images = styled.div`
   display: flex;
-  width: 50%;
+  flex-wrap: wrap;
   padding-right: 16px;
   box-sizing: border-box;
   margin-left: -8px;
   margin-right: -8px;
+  width: 100%;
 `
 
 const StyledImage = styled(Image)`
@@ -50,6 +49,7 @@ const NewButton = styled.div`
   justify-content: center;
   margin-left: 8px;
   margin-right: 8px;
+  flex-shrink: 0;
 
   box-sizing: border-box;
   font-size: 13px;
@@ -91,7 +91,7 @@ const DeleteIcon = styled(AiFillDelete)`
 
 let uploadWidget
 
-function UploadImages ({images, addImage, deleteImage}) {
+function UploadImages ({ images, addImage, deleteImage }) {
   const widgetCallback = (err, result) => {
     if (err) {
       return console.log(err)
@@ -134,6 +134,10 @@ function UploadImages ({images, addImage, deleteImage}) {
   )
 }
 
-UploadImages.propTypes = {}
+UploadImages.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  addImage: PropTypes.func.isRequired,
+  deleteImage: PropTypes.func.isRequired
+}
 
 export default UploadImages

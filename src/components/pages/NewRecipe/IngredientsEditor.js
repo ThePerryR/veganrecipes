@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
@@ -66,7 +66,7 @@ function IngredientsEditor ({ ingredients, setIngredients }) {
       list.push({ label: '', index: nextIndex })
     }
     if (emptyIngredients.length >= 2) {
-      list.splice(list.findIndex(({label}) => !label), 1)
+      list.splice(list.findIndex(({ label }) => !label), 1)
     }
     setIngredients(list)
   }
@@ -115,6 +115,9 @@ function IngredientsEditor ({ ingredients, setIngredients }) {
   )
 }
 
-IngredientsEditor.propTypes = {}
+IngredientsEditor.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setIngredients: PropTypes.func.isRequired
+}
 
 export default IngredientsEditor

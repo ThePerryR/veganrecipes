@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { Helmet } from 'react-helmet'
@@ -10,7 +10,6 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Recipe from './pages/Recipe'
 import Search from './pages/Search'
-import Explore from './pages/Explore'
 import Header from './sections/Header'
 import { useRootStore } from './RootStoreProvider'
 import Profile from './pages/Profile'
@@ -107,6 +106,9 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
   display: flex;
   min-height: 100vh;
+  @media (max-width: 1520px) {
+    flex-direction: column;
+  }
 `
 
 const Main = styled.div`
@@ -118,12 +120,11 @@ const Main = styled.div`
 function Router () {
   const rootStore = useRootStore()
   const currentUser = rootStore.userStore.currentUser
-  const location = useLocation()
   return (
     <React.Fragment>
       <Helmet>
         <title>Browse vegan recipes | EasyVgn</title>
-        <mete name="description" content="Discover and share plant-based recipes with our community of vegans."/>
+        <meta name="description" content="Discover and share plant-based recipes with our community of vegans."/>
         <meta property="og:title" content="Browse vegan recipes | EasyVgn"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content="Discover and share plant-based recipes with our community of vegans."/>
@@ -145,21 +146,21 @@ function Router () {
             <Switch>
               <Route
                 path="/new-recipe"
-                render={({ location }) => !!currentUser
+                render={({ location }) => currentUser
                   ? <NewRecipe/>
                   : <Redirect to={{ pathname: '/', state: { from: location } }}/>
                 }
               />
               <Route
                 path="/register"
-                render={({ location }) => !!currentUser
+                render={({ location }) => currentUser
                   ? <Redirect to={{ pathname: '/', state: { from: location } }}/>
                   : <Register/>
                 }
               />
               <Route
                 path="/login"
-                render={({ location }) => !!currentUser
+                render={({ location }) => currentUser
                   ? <Redirect to={{ pathname: '/', state: { from: location } }}/>
                   : <Login/>
                 }

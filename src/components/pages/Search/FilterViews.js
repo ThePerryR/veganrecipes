@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -18,7 +17,7 @@ function FilterViews () {
         value={view || 'new'}
         options={[
           { label: 'Popular', value: 'popular' },
-          { label: 'New Recipes', value: 'new' },
+          { label: 'New Recipes', value: 'new' }
         ]}
         onChangeValue={value => history.replace(`/recipes/${value}`)}
       />

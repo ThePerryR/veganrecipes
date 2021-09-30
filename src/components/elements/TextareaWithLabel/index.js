@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
   position: relative;
@@ -36,13 +37,21 @@ const Label = styled.label`
   color: #B7B7B7;
 `
 
-function TextareaWithLabel ({label, value, setValue, style}) {
+function TextareaWithLabel ({ label, value, setValue, style }) {
   return (
     <Wrapper style={style}>
       <StyledTextarea value={value} onChange={e => setValue(e.target.value)}/>
       <Label>{label}</Label>
     </Wrapper>
   )
+}
+
+TextareaWithLabel.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+
+  style: PropTypes.object
 }
 
 export default TextareaWithLabel

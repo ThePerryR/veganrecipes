@@ -114,6 +114,13 @@ function Select ({ value, options, onChangeValue }) {
   )
 }
 
-Select.propTypes = {}
+Select.propTypes = {
+  value: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
+  })).isRequired,
+  onChangeValue: PropTypes.func.isRequired
+}
 
 export default Select

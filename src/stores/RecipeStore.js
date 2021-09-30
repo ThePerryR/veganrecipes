@@ -1,4 +1,4 @@
-import { computed, observable, toJS, makeObservable } from 'mobx'
+import { observable, makeObservable } from 'mobx'
 
 /**
  * UserStore
@@ -44,13 +44,20 @@ export class Recipe {
   ingredients = []
   instructions = ''
   images = []
+  ratingCount = 0
+  ratingValue = 0
+  createdAt
+  updatedAt
   _author = null
 
   constructor (store, json) {
     makeObservable(this, {
       name: observable,
       description: observable,
-      slug: observable
+      slug: observable,
+      ratingCount: observable,
+      ratingValue: observable,
+      updatedAt: observable
     })
     this.id = json._id.toString()
     this.store = store
@@ -64,6 +71,10 @@ export class Recipe {
     this.ingredients = json.ingredients || []
     this.instructions = json.instructions || []
     this.images = json.images || []
+    this.ratingValue = json.ratingValue || 0
+    this.ratingCount = json.ratingCount || 0
+    this.createdAt = json.createdAt
+    this.updatedAt = json.updatedAt
 
     if (json.author && typeof json.author === 'object' && json.author.displayName) {
       this.store.rootStore.userStore.addUserFromJSON(json.author)
@@ -80,6 +91,10 @@ export class Recipe {
 
   get author () {
     return this.store.rootStore.userStore.find(this._author)
+  }
+
+  get url () {
+    return `https://www.easyvgn.com/r/${this.slug}`
   }
 
   get asJSON () {

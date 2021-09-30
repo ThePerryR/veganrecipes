@@ -24,6 +24,7 @@ function Search () {
 
   useEffect(() => {
     async function fetchRecipes () {
+      // const search = { sort: '-createdAt' }
       const recipes = await transportLayer.fetchRecipes()
       recipes.forEach(recipeStore.addRecipeFromJSON)
     }

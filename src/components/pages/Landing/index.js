@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { useRootStore } from '../../RootStoreProvider'
-import Button from '../../elements/Button'
 import Logo from '../../elements/Logo'
 import SearchBar from './SearchBar'
 import SidebarSection from './SidebarSection'
@@ -17,7 +16,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 488px;
+  width: 33%;
+  max-width: 600px;
   box-sizing: border-box;
 
   background: #17D764;
@@ -30,20 +30,14 @@ const Wrapper = styled.div`
     font-weight: 700;
     line-height: 32px;
   }
-`
-
-const LogoWrapper = styled.div`
-  margin-bottom: 16px;
-`
-
-const LogoSubTitle = styled.h1`
-  margin-bottom: 64px;
-
-  color: #E6C98F;
-  font-weight: 300;
-  font-size: 19px;
-  line-height: 32px;
-  text-transform: lowercase;
+  
+  @media (max-width: 1520px) {
+    display: none;
+  }
+  
+  @media print {
+    display: none;
+  }
 `
 
 const Palm = styled.img`

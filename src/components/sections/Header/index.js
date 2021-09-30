@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   padding-left: 80px;
   padding-right: 40px;
   background: white;
+  
+  @media print {
+    display: none;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -46,7 +50,7 @@ function Header () {
       <Left/>
       <Right>
         {!currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
-        <StyledLink to={!!currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
+        <StyledLink to={currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
         {currentUser &&
         <UserDropdown user={currentUser}/>
         }

@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently --kill-others \"nodemon src\" \"cross-env NODE_ENV=development webpack serve\"",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config",
-    "heroku-postbuild": "npm rebuild; npm run build"
+    "heroku-postbuild": "npm rebuild; npm run build",
+    "lint": "eslint src"
   },
   "author": "Integrity XD",
   "license": "MIT",
@@ -56,6 +57,7 @@
     "react-icons": "^4.2.0",
     "react-refresh": "^0.10.0",
     "react-router-dom": "^5.3.0",
+    "react-share": "^4.4.0",
     "regenerator-runtime": "^0.13.9",
     "serve-favicon": "^2.5.0",
     "sitemap": "^7.0.0",
@@ -65,8 +67,15 @@
     "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.15.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
     "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.26.1",
     "nodemon": "^2.0.12",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",

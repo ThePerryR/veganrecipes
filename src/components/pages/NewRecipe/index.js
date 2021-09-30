@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { DragDropContext } from 'react-beautiful-dnd'
 
 import InputWithLabel from '../../elements/InputWithLabel'
 import TextareaWithLabel from '../../elements/TextareaWithLabel'

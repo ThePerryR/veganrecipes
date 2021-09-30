@@ -1,7 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
+
+import { Recipe } from '../../../stores/RecipeStore'
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,7 +52,7 @@ const List = styled.div`
   }
 `
 
-const Recipe = styled.div`
+const RecipeCard = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
@@ -78,22 +81,28 @@ function SidebarSection ({ label, recipes, emptyState }) {
           <List>
             {recipes.map(recipe => (
               <Link to={`/r/${recipe.slug}`} key={recipe.id}>
-                <Recipe>
+                <RecipeCard>
                   {recipe.name}
-                </Recipe>
+                </RecipeCard>
               </Link>
             ))}
           </List>
-        )
+          )
         : (
           <EmptyState>
             {emptyState}
           </EmptyState>
-        )
+          )
 
       }
     </Wrapper>
   )
+}
+
+SidebarSection.propTypes = {
+  label: PropTypes.string.isRequired,
+  recipes: PropTypes.arrayOf(PropTypes.instanceOf(Recipe)).isRequired,
+  emptyState: PropTypes.node.isRequired
 }
 
 export default observer(SidebarSection)

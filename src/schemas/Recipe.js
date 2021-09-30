@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose'
-import passportLocalMongoose from 'passport-local-mongoose'
 
 const Recipe = new mongoose.Schema({
   name: { type: String, required: true },
@@ -9,6 +8,9 @@ const Recipe = new mongoose.Schema({
   images: [String],
   ingredients: [String],
   instructions: [String]
+},
+{
+  timestamps: true
 })
 
 module.exports = mongoose.model('Recipe', Recipe)

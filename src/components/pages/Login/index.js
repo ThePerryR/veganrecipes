@@ -35,12 +35,12 @@ function Login () {
   const store = useRootStore()
 
   async function submit () {
-    setError()
+    setError('')
     if (!email) return setError(<span>Please enter your <b>email address</b>.</span>)
     if (!password) return setError(<span>Please enter your <b>password</b>.</span>)
     try {
       setSubmitting(true)
-      const { success, user } = await store.transportLayer.login(email, password)
+      const { success } = await store.transportLayer.login(email, password)
       if (success) {
         window.location.reload()
       }

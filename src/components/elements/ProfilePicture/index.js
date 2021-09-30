@@ -20,6 +20,10 @@ function ProfilePicture ({ id, size, styles }) {
   )
 }
 
-ProfilePicture.propTypes = {}
+ProfilePicture.propTypes = {
+  id: PropTypes.string,
+  size: PropTypes.number,
+  styles: PropTypes.object
+}
 
 export default ProfilePicture

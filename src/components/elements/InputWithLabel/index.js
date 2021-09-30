@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -28,7 +29,7 @@ const Label = styled.label`
   color: #B7B7B7;
 `
 
-function InputWithLabel ({label, value, setValue, style}) {
+function InputWithLabel ({ label, value, setValue, style }) {
   return (
     <Wrapper style={style}>
       <StyledInput value={value} onChange={e => setValue(e.target.value)}/>
@@ -37,4 +38,10 @@ function InputWithLabel ({label, value, setValue, style}) {
   )
 }
 
+InputWithLabel.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  style: PropTypes.object
+}
 export default InputWithLabel

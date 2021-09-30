@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ProfilePicture from '../../elements/ProfilePicture'
 import { observer } from 'mobx-react'
+import { User } from '../../../stores/UserStore'
 
 const Dropdown = styled.div`
   display: none;
@@ -71,6 +72,8 @@ function UserDropdown ({ user }) {
   )
 }
 
-UserDropdown.propTypes = {}
+UserDropdown.propTypes = {
+  user: PropTypes.instanceOf(User).isRequired
+}
 
 export default observer(UserDropdown)

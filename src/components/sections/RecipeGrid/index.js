@@ -4,11 +4,13 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
 import { observer } from 'mobx-react'
+
 import ProfilePicture from '../../elements/ProfilePicture'
+import { Recipe } from '../../../stores/RecipeStore'
 
 const Wrapper = styled.ol`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 32px;
   list-style: none;
 `
@@ -42,6 +44,12 @@ const Name = styled.div`
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  word-wrap: break-word;
 `
 
 const DisplayName = styled.div`
@@ -73,7 +81,7 @@ function RecipeGrid ({ recipes }) {
                 id={recipe.author.profilePicture}
                 styles={{ flexShrink: 0, marginRight: 8 }}
               />
-              <div>
+              <div style={{ width: 'Calc(100% - 56px)' }}>
                 <Name>{recipe.name}</Name>
                 {recipe.author &&
                 <DisplayName>{recipe.author.displayName}</DisplayName>
@@ -87,6 +95,8 @@ function RecipeGrid ({ recipes }) {
   )
 }
 
-RecipeGrid.propTypes = {}
+RecipeGrid.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.instanceOf(Recipe)).isRequired
+}
 
 export default observer(RecipeGrid)

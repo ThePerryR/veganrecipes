@@ -1,4 +1,4 @@
-import { computed, observable, toJS, makeObservable } from 'mobx'
+import { computed, observable, makeObservable } from 'mobx'
 
 /**
  * UserStore
@@ -57,7 +57,6 @@ export class User {
   }
 
   updateFromJSON = (json) => {
-    console.log(1, json)
     this.email = json.email
     this.displayName = json.displayName
     this.profilePicture = json.profilePicture

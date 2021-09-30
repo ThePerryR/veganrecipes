@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
@@ -64,7 +64,7 @@ function InstructionsEditor ({ instructions, setInstructions }) {
       list.push({ label: '', index: nextIndex })
     }
     if (emptyInstructions.length >= 2) {
-      list.splice(list.findIndex(({label}) => !label), 1)
+      list.splice(list.findIndex(({ label }) => !label), 1)
     }
     setInstructions(list)
   }
@@ -86,7 +86,7 @@ function InstructionsEditor ({ instructions, setInstructions }) {
                   draggableId={`draggable-${instruction.index}`}
                   index={i}
                   type="INSTRUCTION">
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <InstructionWrapper
                       ref={provided.innerRef}
                       {...provided.draggableProps}>
@@ -114,6 +114,9 @@ function InstructionsEditor ({ instructions, setInstructions }) {
   )
 }
 
-InstructionsEditor.propTypes = {}
+InstructionsEditor.propTypes = {
+  instructions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setInstructions: PropTypes.func.isRequired
+}
 
 export default InstructionsEditor

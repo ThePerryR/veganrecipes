@@ -1,10 +1,12 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 import RootStoreProvider from './RootStoreProvider'
 import Router from './Router'
-function App ({ initialState }) {
-  const notyf = new window.Notyf();
 
+function App ({ initialState }) {
+  const notyf = new window.Notyf()
 
   return (
     <BrowserRouter>
@@ -13,6 +15,10 @@ function App ({ initialState }) {
       </RootStoreProvider>
     </BrowserRouter>
   )
+}
+
+App.propTypes = {
+  initialState: PropTypes.object
 }
 
 export default App

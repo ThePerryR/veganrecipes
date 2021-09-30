@@ -48,7 +48,6 @@ app.listen(app.get('port'), () => console.log('Listening on port: ', app.get('po
 
 app.get('/sitemap.xml', generateSitemap)
 
-
 app.post('/register', register)
 app.post('/login', login)
 app.get('/logout', (req, res) => {
