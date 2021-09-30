@@ -40,7 +40,7 @@ export default (user) => ([
         ? {
             $in: [user._id, '$favorites.user']
           }
-        : 0,
+        : 1,
       favoriteCount: {
         $size: '$favorites'
       },

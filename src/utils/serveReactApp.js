@@ -48,6 +48,7 @@ export default async function (req, res) {
       data.recipes = [...(data.recipes || []), recipe]
     }
   }
+
   if (req.url.includes('/u/')) {
     const id = req.url.substr(3, req.url.length)
     if (!req.user || !req.user._id.equals(id)) {

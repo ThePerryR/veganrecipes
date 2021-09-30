@@ -90,7 +90,6 @@ function Search ({ initialSearch }) {
   useEffect(() => {
     search = throttle(400, false, async (query) => {
       const recipes = await rootStore.transportLayer.searchRecipes(query)
-      console.log(recipes)
       setRecipes(recipes)
     }, false)
   }, [])

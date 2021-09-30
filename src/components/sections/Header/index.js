@@ -58,7 +58,7 @@ function Header ({ initialSearch }) {
     <Wrapper>
       <Left>
         <Link to="/">
-          <img src="/logo.svg" style={{ height: 24, marginBottom: -10, marginRight: 24 }}/>
+          <img alt='EasyVgn' height={24} src="/logo.svg" style={{ height: 24, marginBottom: -10, marginRight: 24 }}/>
         </Link>
         <SearchWrapper>
           <Search initialSearch={initialSearch}/>

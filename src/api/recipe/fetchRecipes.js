@@ -4,7 +4,6 @@ import Recipe from '../../schemas/Recipe'
 import populateRecipeCard from '../../utils/pipelines/populateRecipeCard'
 
 async function fetchRecipes (req, res) {
-  console.log(req.query)
   const query = {}
   if (req.query.author) {
     query.author = mongoose.Types.ObjectId(req.query.author)

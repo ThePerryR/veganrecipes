@@ -1,7 +1,6 @@
 import Recipe from '../../schemas/Recipe'
 
 async function searchRecipe (req, res) {
-  console.log(req.params.query)
   const recipes = await Recipe.aggregate([
     {
       $search: {
@@ -40,8 +39,6 @@ async function searchRecipe (req, res) {
       }
     }
   ])
-
-  console.log(recipes)
 
   res.json(recipes)
 }
