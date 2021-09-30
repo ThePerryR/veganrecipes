@@ -23,7 +23,9 @@ async function generateSitemap (req, res) {
     smStream.write({ url: '/recipes/popular' })
     const recipes = await Recipes.find({})
     for (const recipe of recipes) {
-      smStream.write({ url: `/r/${recipe.slug}` })
+      const updateDate = new Date(recipe.updatedAt)
+      const lastmod = updateDate.toISOString()
+      smStream.write({ url: `/r/${recipe.slug}`, lastmod })
     }
 
     // cache the response
