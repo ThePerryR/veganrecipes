@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { BsStar, BsStarHalf, BsStarFill } from 'react-icons/bs'
+import { observer } from 'mobx-react'
+import { BsStar, BsStarHalf, BsStarFill, BsHeart, BsHeartFill } from 'react-icons/bs'
+
 import { useRootStore } from '../../../../RootStoreProvider'
 import { Recipe } from '../../../../../stores/RecipeStore'
 
@@ -26,6 +28,15 @@ const Count = styled.div`
   color: #676767;
 `
 
+const Favorite = styled.div`
+  font-size: 18px;
+  margin-right: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #ff4656;
+`
+
 function Review ({ recipe }) {
   const rootStore = useRootStore()
   const [vote, setVote] = useState(0)
@@ -39,6 +50,16 @@ function Review ({ recipe }) {
       recipe.ratingValue = update.ratingValue
       recipe.ratingCount = update.ratingCount
     }
+  }
+
+  async function favorite () {
+    recipe.isFavorite = !recipe.isFavorite
+    if (recipe.isFavorite) {
+      recipe.favoriteCount++
+    } else {
+      recipe.favoriteCount--
+    }
+    rootStore.transportLayer.favoriteRecipe(recipe.id, rootStore.currentUserId)
   }
 
   for (let i = 0; i < 5; i++) {
@@ -55,6 +76,14 @@ function Review ({ recipe }) {
   }
   return (
     <Wrapper>
+      {rootStore.currentUserId &&
+      <div style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+        <Favorite onClick={favorite}>
+          {recipe.isFavorite ? <BsHeartFill/> : <BsHeart/>}
+        </Favorite>
+        <Count>({recipe.favoriteCount})</Count>
+      </div>
+      }
       {stars}
       <Count>({recipe.ratingCount})</Count>
     </Wrapper>
@@ -65,4 +94,4 @@ Review.propTypes = {
   recipe: PropTypes.instanceOf(Recipe).isRequired
 }
 
-export default Review
+export default observer(Review)

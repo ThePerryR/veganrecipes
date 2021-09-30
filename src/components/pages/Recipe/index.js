@@ -67,7 +67,9 @@ function Recipe () {
   return (
     <Wrapper>
       <HelmetOptions recipe={recipe}/>
+
       <Overview recipe={recipe}/>
+
       <Requirements recipe={recipe}/>
       {admin &&
       <Admin>

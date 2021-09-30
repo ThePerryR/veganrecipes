@@ -46,6 +46,8 @@ export class Recipe {
   images = []
   ratingCount = 0
   ratingValue = 0
+  favoriteCount = 0
+  isFavorite = false
   createdAt
   updatedAt
   _author = null
@@ -55,8 +57,10 @@ export class Recipe {
       name: observable,
       description: observable,
       slug: observable,
+      favoriteCount: observable,
       ratingCount: observable,
       ratingValue: observable,
+      isFavorite: observable,
       updatedAt: observable
     })
     this.id = json._id.toString()
@@ -73,7 +77,10 @@ export class Recipe {
     this.images = json.images || []
     this.ratingValue = json.ratingValue || 0
     this.ratingCount = json.ratingCount || 0
+    this.favoriteCount = json.favoriteCount || 0
+    this.isFavorite = json.isFavorite || false
     this.createdAt = json.createdAt
+    this.searchResult = json.searchResult
     this.updatedAt = json.updatedAt
 
     if (json.author && typeof json.author === 'object' && json.author.displayName) {

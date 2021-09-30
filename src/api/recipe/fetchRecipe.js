@@ -1,11 +1,11 @@
 import Recipe from '../../schemas/Recipe'
 
-import populateAuthorAndRating from '../../utils/pipelines/populateAuthorAndRating'
+import populateRecipePage from '../../utils/pipelines/populateRecipePage'
 
 async function fetchRecipe (req, res) {
   const [recipe] = await Recipe.aggregate([
     { $match: { slug: req.params.slug } },
-    ...populateAuthorAndRating
+    ...populateRecipePage(req.user)
   ])
   res.json(recipe)
 }

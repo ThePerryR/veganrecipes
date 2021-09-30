@@ -4,7 +4,6 @@ import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { Helmet } from 'react-helmet'
 
-import Landing from './pages/Landing'
 import NewRecipe from './pages/NewRecipe'
 import Register from './pages/Register'
 import Login from './pages/Login'
@@ -131,17 +130,11 @@ function Router () {
         <meta property="fb:app_id" content="602901140835407"/>
         <meta property="og:url" content="https://www.easyvgn.com/"/>
         <meta property="og:image" content="https://www.easyvgn.com/main-card.jpg"/>
-
       </Helmet>
       <GlobalStyle/>
       <Wrapper>
-        <Switch>
-          <Route path="/">
-            <Landing/>
-          </Route>
-        </Switch>
         <Main>
-          <Header/>
+          <Header initialSearch={rootStore.initialSearch}/>
           <div style={{ flex: 1 }}>
             <Switch>
               <Route
@@ -173,6 +166,9 @@ function Router () {
               </Route>
               <Route path="/u/:id">
                 <Profile/>
+              </Route>
+              <Route path="/search/:query">
+                <Search/>
               </Route>
               <Route path="/account">
                 <Account/>

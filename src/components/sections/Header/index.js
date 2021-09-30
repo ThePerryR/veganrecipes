@@ -1,19 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { useRootStore } from '../../RootStoreProvider'
 import UserDropdown from './UserDropdown'
+import Search from '../Search'
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding-left: 80px;
-  padding-right: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
   background: white;
-  
+
   @media print {
     display: none;
   }
@@ -22,7 +24,10 @@ const Wrapper = styled.div`
 const StyledLink = styled(Link)`
   font-size: 13px;
 `
-const Left = styled.div``
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+`
 const Right = styled.div`
   height: 100%;
   display: flex;
@@ -42,12 +47,23 @@ const Right = styled.div`
   }
 `
 
-function Header () {
+const SearchWrapper = styled.div`
+  width: 320px;
+`
+
+function Header ({ initialSearch }) {
   const { userStore } = useRootStore()
   const currentUser = userStore.currentUser
   return (
     <Wrapper>
-      <Left/>
+      <Left>
+        <Link to="/">
+          <img src="/logo.svg" style={{ height: 24, marginBottom: -10, marginRight: 24 }}/>
+        </Link>
+        <SearchWrapper>
+          <Search initialSearch={initialSearch}/>
+        </SearchWrapper>
+      </Left>
       <Right>
         {!currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
         <StyledLink to={currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
@@ -57,6 +73,10 @@ function Header () {
       </Right>
     </Wrapper>
   )
+}
+
+Header.propTypes = {
+  initialSearch: PropTypes.string
 }
 
 export default Header
