@@ -55,7 +55,8 @@ function HelmetOptions ({ recipe }) {
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: recipe.ratingValue,
-            ratingCount: recipe.ratingCount
+            ratingCount: recipe.ratingCount,
+            bestRating: 5
           }
         })}
       </script>
