@@ -7,6 +7,7 @@ import session from 'express-session'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import favicon from 'serve-favicon'
+import compression from 'compression'
 
 import serveReactApp from './utils/serveReactApp'
 import register from './utils/auth/register'
@@ -54,6 +55,8 @@ app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
+app.use(compression())
 
 app.use('/api', api())
 
