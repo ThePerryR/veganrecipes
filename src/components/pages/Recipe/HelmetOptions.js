@@ -48,7 +48,6 @@ function HelmetOptions ({ recipe }) {
           recipeIngredient: recipe.ingredients,
           recipeInstructions: recipe.instructions.map((instruction, i) => ({
             '@type': 'HowToStep',
-            name: `Step ${i + 1}`,
             text: instruction,
             url: `${recipe.url}#step${i + 1}`
             // 'image': 'https://example.com/photos/party-coffee-cake/step1.jpg'
