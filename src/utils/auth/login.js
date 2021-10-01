@@ -13,5 +13,9 @@ export default async function (req, res, next) {
     return res.status(401).json({ err: { email: 'We could not find an account with this email.' } })
   }
 
+  if (!user.validated) {
+    return res.status(401).json({ err: { validation: true } })
+  }
+
   attemptLogin(req, res, next)
 }

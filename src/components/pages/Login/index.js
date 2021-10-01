@@ -49,6 +49,7 @@ function Login () {
       const error = await err
       if (error.err && error.err.email) setError(error.err.email)
       if (error.err && error.err.password) setError(error.err.password)
+      if (error.err && error.err.validation) setError('Please verify your email by clicking the link in our welcome email.')
       if (error.authError) setError('Email or password do not match.')
     }
   }

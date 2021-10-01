@@ -66,7 +66,9 @@ function Header ({ initialSearch }) {
       </Left>
       <Right>
         {!currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
-        <StyledLink to={currentUser ? '/new-recipe' : '/register'}>Add a recipe</StyledLink>
+        <StyledLink to={currentUser ? '/new-recipe' : '/register'}>
+          {currentUser ? 'Add a recipe' : 'Register'}
+        </StyledLink>
         {currentUser &&
         <UserDropdown user={currentUser}/>
         }

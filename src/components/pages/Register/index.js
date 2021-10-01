@@ -5,6 +5,7 @@ import validator from 'email-validator'
 import { useRootStore } from '../../RootStoreProvider'
 import Button from '../../elements/Button'
 import ErrorMessage from '../../elements/ErrorMessage'
+import { useHistory } from 'react-router-dom'
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ function Register () {
   const [submitting, setSubmitting] = useState()
   const displayNameInput = useRef(null)
   const store = useRootStore()
+  const history = useHistory()
 
   useEffect(() => {
     displayNameInput.current.focus()
@@ -50,7 +52,8 @@ function Register () {
     try {
       const { success } = await store.transportLayer.register(email, password, displayName)
       if (success) {
-        window.location.reload()
+        history.push(`/register/confirm`)
+        setSubmitting(false)
       }
     } catch (err) {
       setSubmitting(false)

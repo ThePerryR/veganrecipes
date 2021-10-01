@@ -14,6 +14,7 @@ import { useRootStore } from './RootStoreProvider'
 import Profile from './pages/Profile'
 import Account from './pages/Account'
 import EditRecipe from './pages/EditRecipe'
+import ConfirmEmail from './pages/ConfirmEmail'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -143,6 +144,13 @@ function Router () {
                 render={({ location }) => currentUser
                   ? <NewRecipe/>
                   : <Redirect to={{ pathname: '/', state: { from: location } }}/>
+                }
+              />
+              <Route
+                path="/register/confirm"
+                render={({ location }) => currentUser
+                  ? <Redirect to={{ pathname: '/', state: { from: location } }}/>
+                  : <ConfirmEmail/>
                 }
               />
               <Route

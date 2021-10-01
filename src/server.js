@@ -12,6 +12,7 @@ import compression from 'compression'
 import serveReactApp from './utils/serveReactApp'
 import register from './utils/auth/register'
 import login from './utils/auth/login'
+import confirmEmail from './utils/auth/confirmEmail'
 import User from './schemas/User'
 import api from './api'
 import generateSitemap from './utils/generateSitemap'
@@ -51,6 +52,7 @@ app.get('/sitemap.xml', generateSitemap)
 
 app.post('/register', register)
 app.post('/login', login)
+app.get('/confirm-email?', confirmEmail)
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
