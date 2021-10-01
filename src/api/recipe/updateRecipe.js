@@ -8,7 +8,6 @@ async function updateRecipe (req, res) {
   if (!recipe.author.equals(req.user._id)) {
     return res.sendStatus(409)
   }
-  console.log(req.body.category)
   if (![null, undefined].includes(req.body.name)) recipe.name = req.body.name
   if (![null, undefined].includes(req.body.description)) recipe.description = req.body.description
   if (![null, undefined].includes(req.body.category)) recipe.category = req.body.category
@@ -16,7 +15,6 @@ async function updateRecipe (req, res) {
   if (![null, undefined].includes(req.body.ingredients)) recipe.ingredients = req.body.ingredients
   if (![null, undefined].includes(req.body.instructions)) recipe.instructions = req.body.instructions
   await recipe.save()
-  console.log(2, recipe.category)
   res.json(recipe)
 }
 

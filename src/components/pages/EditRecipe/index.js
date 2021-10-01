@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
@@ -41,7 +40,6 @@ function EditRecipe () {
   useEffect(() => {
     async function fetchRecipe () {
       const recipe = await rootStore.transportLayer.fetchRecipe(id)
-      console.log(11, recipe)
       setRecipe(recipe)
       setInstructions(recipe.instructions.map((label, i) => ({ label, index: i + 1 })))
       setIngredients(recipe.ingredients.map((label, i) => ({ label, index: i + 1 })))
@@ -59,7 +57,7 @@ function EditRecipe () {
         images: recipe.images,
         category: recipe.category,
         ingredients: ingredients.map(({ label }) => label),
-        instructions: instructions.map(({ label }) => label),
+        instructions: instructions.map(({ label }) => label)
       })
       rootStore.notyf.success('This recipe has been updated!')
       setSaving(false)
@@ -108,7 +106,6 @@ function EditRecipe () {
           setInstructions={setInstructions}
         />
       </Requirements>
-
 
       <MetaDataEditor
         category={recipe.category || ''}

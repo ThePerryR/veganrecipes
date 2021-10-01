@@ -5,7 +5,6 @@ import { Recipe } from '../../../stores/RecipeStore'
 import categories from '../../../constants/categories'
 
 function HelmetOptions ({ recipe }) {
-  console.log(111, recipe.category)
   return (
     <Helmet>
       <title>{recipe.name} | EasyVgn</title>
@@ -39,8 +38,8 @@ function HelmetOptions ({ recipe }) {
           // 'totalTime': 'PT50M',
           keywords: 'vegan',
           // 'recipeYield': '10',
-          'recipeCategory': recipe.category && categories.find(({value}) => value === recipe.category).label,
-          'recipeCuisine': 'Vegan',
+          recipeCategory: recipe.category && categories.find(({ value }) => value === recipe.category).label,
+          recipeCuisine: 'Vegan',
           /*
           'nutrition': {
             '@type': 'NutritionInformation',
