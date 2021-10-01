@@ -9,6 +9,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import UploadImages from './UploadImages'
 import IngredientsEditor from './IngredientsEditor'
 import InstructionsEditor from './InstructionsEditor'
+import MetaDataEditor from './MetaDataEditor'
 
 const Wrapper = styled.div`
   padding: 64px;
@@ -25,6 +26,7 @@ const hasLabel = ({ label }) => !!label
 function NewRecipe () {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
   const [images, setImages] = useState([])
   const [ingredients, setIngredients] = useState([
     { label: '', index: 0 }
@@ -37,7 +39,7 @@ function NewRecipe () {
   const history = useHistory()
 
   async function submit () {
-    const json = await rootStore.transportLayer.createRecipe(name, description, images, ingredients.filter(hasLabel).map(returnLabel), instructions.filter(hasLabel).map(returnLabel))
+    const json = await rootStore.transportLayer.createRecipe(name, description, category, images, ingredients.filter(hasLabel).map(returnLabel), instructions.filter(hasLabel).map(returnLabel))
     const recipe = rootStore.recipeStore.addRecipeFromJSON(json)
     history.push(`/r/${recipe.slug}`)
   }
@@ -78,6 +80,10 @@ function NewRecipe () {
           setInstructions={setInstructions}
         />
       </Requirments>
+      <MetaDataEditor
+        category={category}
+        setCategory={setCategory}
+      />
       <Button label="Create Recipe" onClick={submit}/>
     </Wrapper>
   )

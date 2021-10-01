@@ -28,6 +28,7 @@ export default (user) => ([
       name: 1,
       description: 1,
       slug: 1,
+      category: 1,
       ingredients: 1,
       instructions: 1,
       createdAt: 1,

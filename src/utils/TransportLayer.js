@@ -11,9 +11,10 @@ export default class TransportLayer {
   fetchUser = id => this.fetch(`/api/user/${id}`)
   updateUser = (id, json) => this.fetch(`/api/user/${id}`, 'PUT', json)
 
-  createRecipe = (name, description, images, ingredients, instructions) => this.fetch('/api/recipe', 'POST', { name, description, images, ingredients, instructions })
+  createRecipe = (name, description, category, images, ingredients, instructions) => this.fetch('/api/recipe', 'POST', { name, description, category, images, ingredients, instructions })
   fetchRecipes = (query) => this.fetch('/api/recipe', 'get', null, query)
   fetchRecipe = (id) => this.fetch(`/api/recipe/${id}`)
+  updateRecipe = (id, update) => this.fetch(`/api/recipe/${id}`, 'PUT', update)
   deleteRecipe = (id) => this.fetch(`/api/recipe/${id}`, 'DELETE')
   reviewRecipe = (id, userId, stars) => this.fetch(`/api/recipe/${id}/review`, 'POST', { userId, stars })
   favoriteRecipe = (id) => this.fetch(`/api/recipe/${id}/favorite`, 'POST')

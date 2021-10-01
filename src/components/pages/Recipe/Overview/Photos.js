@@ -46,6 +46,7 @@ function Photos ({ images }) {
         gravity="custom"
       />
       }
+      {images.length > 1 &&
       <ThumbnailList>
         {images.map((publicId, i) => (
           <div key={publicId} onClick={() => setImageIndex(i)}>
@@ -58,6 +59,7 @@ function Photos ({ images }) {
           </div>
         ))}
       </ThumbnailList>
+      }
     </Wrapper>
   )
 }

@@ -19,6 +19,8 @@ async function fetchRecipes (req, res) {
         sort[s] = 1
       }
     }
+  } else {
+    sort.createdAt = -1
   }
 
   const pipeline = [{ $match: query }, ...populateRecipeCard(req.user), { $sort: sort }]

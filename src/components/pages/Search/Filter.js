@@ -9,7 +9,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  width: 100%;
+  height: 64px;
+  padding-left: 32px;
+  padding-right: 32px;
 `
 
 function Filter () {

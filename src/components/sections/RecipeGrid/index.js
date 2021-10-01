@@ -50,6 +50,7 @@ const Name = styled.div`
   text-overflow: ellipsis;
   word-break: break-all;
   word-wrap: break-word;
+  color: #1A1A1A;
 `
 
 const DisplayName = styled.div`

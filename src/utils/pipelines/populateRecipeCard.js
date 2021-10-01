@@ -11,6 +11,7 @@ export default (user) => ([
     $project: {
       name: 1,
       description: 1,
+      category: 1,
       slug: 1,
       ingredients: 1,
       instructions: 1,

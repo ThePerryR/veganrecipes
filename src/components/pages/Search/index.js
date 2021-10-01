@@ -11,10 +11,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 32px;
+  box-sizing: border-box;
+`
+
+const GridWrapper = styled.div`
   padding-left: 32px;
   padding-right: 32px;
-  box-sizing: border-box;
 `
 
 function Search () {
@@ -42,7 +44,9 @@ function Search () {
   return (
     <Wrapper>
       <Filter/>
-      <RecipeGrid recipes={recipes.slice().sort(sort)}/>
+      <GridWrapper>
+        <RecipeGrid recipes={recipes.slice().sort(sort)}/>
+      </GridWrapper>
     </Wrapper>
   )
 }

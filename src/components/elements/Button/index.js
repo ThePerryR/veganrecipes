@@ -43,11 +43,37 @@ const Wrapper = styled.button`
     background: #f1f1f1;
   }
   `}
+
+  ${props => props.simple && `
+    background: white;
+    color: initial;
+    border-radius: 4px;
+    border: 1px solid #c9c9c9;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 15px;
+    &:hover {
+    background: #e7e7e7;
+    }
+  `}
+
+  ${props => props.danger && `
+    background: #dd0000;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 15px;
+    &:hover {
+    background: #fd1111;
+    }
+  `}
 `
 
-function Button ({ label, text, style, onClick, disabled }) {
+function Button ({ label, text, simple, danger, style, onClick, disabled }) {
   return (
-    <Wrapper text={text} style={style} onClick={onClick} disabled={disabled}>
+    <Wrapper text={text} simple={simple} danger={danger} style={style} onClick={onClick} disabled={disabled}>
       {label}
     </Wrapper>
   )
@@ -56,6 +82,8 @@ function Button ({ label, text, style, onClick, disabled }) {
 Button.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   text: PropTypes.bool,
+  simple: PropTypes.bool,
+  danger: PropTypes.bool,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   style: PropTypes.object

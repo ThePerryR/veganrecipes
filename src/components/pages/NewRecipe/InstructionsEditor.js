@@ -115,7 +115,7 @@ function InstructionsEditor ({ instructions, setInstructions }) {
 }
 
 InstructionsEditor.propTypes = {
-  instructions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  instructions: PropTypes.arrayOf(PropTypes.object).isRequired,
   setInstructions: PropTypes.func.isRequired
 }
 

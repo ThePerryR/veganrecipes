@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import styled from 'styled-components'
 
@@ -7,6 +7,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import HelmetOptions from './HelmetOptions'
 import Overview from './Overview'
 import Requirements from './Requirements'
+import Button from '../../elements/Button'
 
 const Wrapper = styled.div`
   padding: 56px;
@@ -18,6 +19,11 @@ const Wrapper = styled.div`
 
 const Admin = styled.div`
   margin-top: 64px;
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
   @media print {
     display: none;
   }
@@ -73,7 +79,10 @@ function Recipe () {
       <Requirements recipe={recipe}/>
       {admin &&
       <Admin>
-        <div onClick={handleClickDelete}>Delete</div>
+        <Link to={`/r/${recipe.slug}/edit`}>
+          <Button label="Edit Recipe" simple style={{ marginRight: 16 }}/>
+        </Link>
+        <Button danger onClick={handleClickDelete} label="Delete"/>
       </Admin>
       }
     </Wrapper>

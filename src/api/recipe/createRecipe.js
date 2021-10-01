@@ -17,6 +17,7 @@ async function createRecipe (req, res) {
   const recipe = new Recipe({
     slug: number ? `${slug}-${number}` : slug,
     name: req.body.name,
+    category: req.body.category,
     description: req.body.description,
     images: req.body.images,
     ingredients: req.body.ingredients,

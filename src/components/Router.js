@@ -13,13 +13,14 @@ import Header from './sections/Header'
 import { useRootStore } from './RootStoreProvider'
 import Profile from './pages/Profile'
 import Account from './pages/Account'
+import EditRecipe from './pages/EditRecipe'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
   body {
     font-family: 'Poppins', serif;
     -webkit-font-smoothing: antialiased;
-    background: #F6F7F9;
+    background: #F6F6F6;
   }
 
   p {
@@ -160,6 +161,9 @@ function Router () {
               />
               <Route path="/recipes/:view">
                 <Search/>
+              </Route>
+              <Route path="/r/:id/edit">
+                <EditRecipe/>
               </Route>
               <Route path="/r/:id">
                 <Recipe/>

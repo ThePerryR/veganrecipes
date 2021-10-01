@@ -116,7 +116,7 @@ function IngredientsEditor ({ ingredients, setIngredients }) {
 }
 
 IngredientsEditor.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
   setIngredients: PropTypes.func.isRequired
 }
 

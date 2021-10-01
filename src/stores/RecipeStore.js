@@ -40,6 +40,7 @@ export class Recipe {
   id = null
   name = ''
   description = ''
+  category = ''
   slug = ''
   ingredients = []
   instructions = ''
@@ -61,6 +62,7 @@ export class Recipe {
       ratingCount: observable,
       ratingValue: observable,
       isFavorite: observable,
+      category: observable,
       updatedAt: observable
     })
     this.id = json._id.toString()
@@ -71,6 +73,7 @@ export class Recipe {
   updateFromJSON = (json) => {
     this.name = json.name || ''
     this.description = json.description || ''
+    this.category = json.category || ''
     this.slug = json.slug || ''
     this.ingredients = json.ingredients || []
     this.instructions = json.instructions || []
@@ -110,6 +113,7 @@ export class Recipe {
       name: this.name,
       slug: this.slug,
       description: this.description,
+      category: this.category,
       images: this.images,
       ingredients: this.ingredients,
       instructions: this.instructions

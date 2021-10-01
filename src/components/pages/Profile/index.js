@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
+
 import { useRootStore } from '../../RootStoreProvider'
 import RecipeGrid from '../../sections/RecipeGrid'
 import Button from '../../elements/Button'
+import ProfilePicture from '../../elements/ProfilePicture'
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -13,14 +15,6 @@ const Top = styled.div`
   display: flex;
   padding-bottom: 64px;
   justify-content: space-between;
-`
-
-const ProfilePicture = styled.div`
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  background: black;
-  margin-right: 24px;
 `
 const Personal = styled.div`
 
@@ -62,7 +56,7 @@ function Profile () {
     <Wrapper>
       <Top>
         <Info>
-          <ProfilePicture/>
+          <ProfilePicture id={user.profilePicture} size={120} styles={{ marginRight: 24 }}/>
           <Personal>
             <Name>{user.displayName}</Name>
           </Personal>

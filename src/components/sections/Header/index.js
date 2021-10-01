@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 80px;
   padding-left: 32px;
   padding-right: 32px;
   background: white;
@@ -58,7 +58,7 @@ function Header ({ initialSearch }) {
     <Wrapper>
       <Left>
         <Link to="/">
-          <img alt='EasyVgn' height={24} src="/logo.svg" style={{ height: 24, marginBottom: -10, marginRight: 24 }}/>
+          <img alt='EasyVgn' src="/logo.svg" style={{ height: 32, marginBottom: -10, marginRight: 24 }}/>
         </Link>
         <SearchWrapper>
           <Search initialSearch={initialSearch}/>
