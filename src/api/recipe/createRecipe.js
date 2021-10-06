@@ -1,23 +1,15 @@
 import slugify from 'slugify'
 import Recipe from '../../schemas/Recipe'
+import generateSlug from '../../utils/generateSlug'
 
 async function createRecipe (req, res) {
-  const slug = slugify(req.body.name, { lower: true, strict: true })
-  let unique = false
-  let number = 0
-  while (!unique) {
-    const recipe = await Recipe.findOne({ slug: number ? `${slug}-${number}` : slug })
-    if (!recipe) {
-      unique = true
-    } else {
-      number++
-    }
-  }
+  const slug = await generateSlug(req.body.name)
 
   const recipe = new Recipe({
-    slug: number ? `${slug}-${number}` : slug,
+    slug,
     name: req.body.name,
     category: req.body.category,
+    metadata: req.body.metadata,
     description: req.body.description,
     images: req.body.images,
     ingredients: req.body.ingredients,

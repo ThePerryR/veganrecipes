@@ -12,6 +12,8 @@ import { Recipe } from '../../../../../stores/RecipeStore'
 const Wrapper = styled.div`
   flex: 1;
   padding-left: 56px;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 1000px) {
     padding-left: 32px;
@@ -20,6 +22,13 @@ const Wrapper = styled.div`
     padding-left: 0;
     margin-bottom: 24px;
   }
+  ${props => props.full && `
+  padding-left: 0;
+  
+  @media (max-width: 1000px) {
+    padding-left: 0;
+  }
+  `}
 `
 
 const Title = styled.h1`
@@ -41,7 +50,7 @@ const Description = styled.p`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 
   @media print {
     display: none;
@@ -89,7 +98,7 @@ const PrintButton = styled.div`
 
 function Details ({ recipe }) {
   return (
-    <Wrapper>
+    <Wrapper full={!recipe.images.length}>
       <TitleWrapper>
         <Title>{recipe.name}</Title>
 

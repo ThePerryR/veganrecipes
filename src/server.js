@@ -8,6 +8,9 @@ import mongoose from 'mongoose'
 import passport from 'passport'
 import favicon from 'serve-favicon'
 import compression from 'compression'
+import scraper from 'recipe-scraper'
+import { parse } from 'recipe-ingredient-parser-v3'
+import cheerio from 'cheerio'
 
 import serveReactApp from './utils/serveReactApp'
 import register from './utils/auth/register'
@@ -16,6 +19,8 @@ import confirmEmail from './utils/auth/confirmEmail'
 import User from './schemas/User'
 import api from './api'
 import generateSitemap from './utils/generateSitemap'
+import Recipe from './schemas/Recipe'
+import generateSlug from './utils/generateSlug'
 
 dotEnv.config()
 
@@ -61,5 +66,28 @@ app.get('/logout', (req, res) => {
 app.use(compression())
 
 app.use('/api', api())
+
+app.get('/parse', async (req, res) => {
+  if (!req.user || !req.query.url) {
+    return res.json({ error: true })
+  }
+  const { name, description, ingredients, instructions } = await scraper(req.query.url)
+  const ingred = ingredients.map(ingredient => parse(ingredient, 'eng'))
+  const slug = await generateSlug(name)
+  const recipe = new Recipe({
+    name,
+    description,
+    ingredients: ingred.map(i => ({
+      quantity: i.quantity,
+      unit: i.unit,
+      ingredient: i.ingredient
+    })),
+    instructions,
+    slug,
+    author: req.user._id
+  })
+  await recipe.save()
+  res.redirect(`/r/${recipe.slug}`)
+})
 
 app.get('*', serveReactApp)

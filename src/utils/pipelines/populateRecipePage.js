@@ -31,6 +31,7 @@ export default (user) => ([
       category: 1,
       ingredients: 1,
       instructions: 1,
+      metadata: 1,
       createdAt: 1,
       updatedAt: 1,
       'author.displayName': 1,

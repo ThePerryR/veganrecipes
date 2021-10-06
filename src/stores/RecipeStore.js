@@ -44,6 +44,7 @@ export class Recipe {
   slug = ''
   ingredients = []
   instructions = ''
+  metadata = {}
   images = []
   ratingCount = 0
   ratingValue = 0
@@ -74,6 +75,7 @@ export class Recipe {
     this.name = json.name || ''
     this.description = json.description || ''
     this.category = json.category || ''
+    this.metadata = json.metadata || {}
     this.slug = json.slug || ''
     this.ingredients = json.ingredients || []
     this.instructions = json.instructions || []
@@ -112,6 +114,7 @@ export class Recipe {
       _id: this.id,
       name: this.name,
       slug: this.slug,
+      prep: this.prep,
       description: this.description,
       category: this.category,
       images: this.images,

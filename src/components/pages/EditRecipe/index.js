@@ -13,12 +13,16 @@ import Button from '../../elements/Button'
 import MetaDataEditor from '../NewRecipe/MetaDataEditor'
 
 const Wrapper = styled.div`
-  padding: 64px;
+  padding: 40px 64px;
 `
 
 const Requirements = styled.div`
   display: flex;
   margin-bottom: 64px;
+
+  @media (max-width: 1308px) {
+    flex-direction: column;
+  }
 `
 
 const Breadcrumbs = styled.div`
@@ -28,6 +32,16 @@ const Breadcrumbs = styled.div`
   color: #177dff;
   margin-bottom: 16px;
 `
+
+
+const returnIngredientObject = ({ ingredient, quantity, unit }) => {
+  const obj = { ingredient }
+  if (quantity) {
+    obj.quantity = Number(quantity)
+  }
+  if (unit) obj.unit = unit
+  return obj
+}
 
 function EditRecipe () {
   const { id } = useParams()
@@ -42,7 +56,7 @@ function EditRecipe () {
       const recipe = await rootStore.transportLayer.fetchRecipe(id)
       setRecipe(recipe)
       setInstructions(recipe.instructions.map((label, i) => ({ label, index: i + 1 })))
-      setIngredients(recipe.ingredients.map((label, i) => ({ label, index: i + 1 })))
+      setIngredients(recipe.ingredients.map((data, i) => ({ ...data, index: i + 1 })))
     }
 
     fetchRecipe()
@@ -56,7 +70,8 @@ function EditRecipe () {
         description: recipe.description,
         images: recipe.images,
         category: recipe.category,
-        ingredients: ingredients.map(({ label }) => label),
+        metadata: recipe.metadata,
+        ingredients: ingredients.map(returnIngredientObject),
         instructions: instructions.map(({ label }) => label)
       })
       rootStore.notyf.success('This recipe has been updated!')
@@ -110,6 +125,8 @@ function EditRecipe () {
       <MetaDataEditor
         category={recipe.category || ''}
         setCategory={category => setRecipe({ ...recipe, category })}
+        metadata={recipe.metadata || {}}
+        setMetadata={metadata => setRecipe({ ...recipe, metadata })}
       />
 
       <Button disabled={saving} label={saving ? 'Saving...' : 'Save Recipe'} onClick={save}/>

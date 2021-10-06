@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 function Requirements ({ recipe }) {
   return (
    <Wrapper>
-     <IngredientList ingredients={recipe.ingredients}/>
+     <IngredientList ingredients={recipe.ingredients} metadata={recipe.metadata}/>
      <InstructionList instructions={recipe.instructions}/>
    </Wrapper>
   )

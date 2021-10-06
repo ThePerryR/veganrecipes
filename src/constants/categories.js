@@ -6,5 +6,6 @@ export default [
   { label: 'Dessert', value: 'dessert' },
   { label: 'Salad', value: 'salad' },
   { label: 'Side Dish', value: 'side' },
-  { label: 'Soup and Stews', value: 'soup' }
+  { label: 'Soup and Stews', value: 'soup' },
+  { label: 'Sauce and Dressing', value: 'sauce' },
 ]

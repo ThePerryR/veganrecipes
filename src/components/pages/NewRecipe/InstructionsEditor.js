@@ -6,6 +6,10 @@ import { IoIosReorder } from 'react-icons/io'
 
 const Wrapper = styled.div`
   width: 50%;
+
+  @media (max-width: 1308px) {
+    width: 100%;
+  }
 `
 
 const Label = styled.div`

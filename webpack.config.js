@@ -19,6 +19,9 @@ const config = {
   devServer: {
     hot: true,
     port,
+    open: {
+      target: ['http://localhost:3000']
+    },
     headers: {
       'Access-Control-Allow-Origin': '*' // this is so 3000 can talk to this dev server at 3001
     },

@@ -6,7 +6,7 @@ import useOnClickOutside from 'use-onclickoutside'
 
 const Wrapper = styled.div`
   position: relative;
-  width: 156px;
+  width: 100%;
 `
 
 const Selector = styled.div`

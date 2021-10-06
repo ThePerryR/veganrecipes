@@ -5,24 +5,53 @@ import { Recipe } from '../../../../../stores/RecipeStore'
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   font-size: 13px;
   color: #737373;
+  align-self: flex-end;
+  width: 100%;
+  max-width: 320px;
+`
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 13px;
+  margin-bottom: 8px;
 `
 
 function MetaData ({ recipe }) {
-  const createdAt = new Intl.DateTimeFormat([], {
+  const dateTime = new Intl.DateTimeFormat([], {
     month: 'short',
     year: 'numeric',
     day: 'numeric'
-  }).format(new Date(recipe.createdAt))
+  })
+  const createdAt = dateTime.format(new Date(recipe.createdAt))
+  const updatedAt = dateTime.format(new Date(recipe.updatedAt))
   return (
     <Wrapper>
-      <div>
-        Created {createdAt}
-      </div>
-      <div/>
+      {recipe.metadata.prepTime &&
+      <Row>
+        <div>Prep time</div>
+        <div>{recipe.metadata.prepTime} minutes</div>
+      </Row>
+      }
+      {recipe.metadata.cookTime &&
+      <Row>
+        <div>Cook time</div>
+        <div>{recipe.metadata.cookTime} minutes</div>
+      </Row>
+      }
+      <Row>
+        <div>Created on</div>
+        <div>{createdAt}</div>
+      </Row>
+      <Row>
+        <div>Last updated</div>
+        <div>{updatedAt}</div>
+      </Row>
     </Wrapper>
   )
 }

@@ -14,6 +14,7 @@ async function updateRecipe (req, res) {
   if (![null, undefined].includes(req.body.images)) recipe.images = req.body.images
   if (![null, undefined].includes(req.body.ingredients)) recipe.ingredients = req.body.ingredients
   if (![null, undefined].includes(req.body.instructions)) recipe.instructions = req.body.instructions
+  if (![null, undefined].includes(req.body.metadata)) recipe.metadata = req.body.metadata
   await recipe.save()
   res.json(recipe)
 }

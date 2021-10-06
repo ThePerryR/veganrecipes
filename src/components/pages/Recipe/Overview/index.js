@@ -29,7 +29,9 @@ const Wrapper = styled.div`
 function Overview ({ recipe }) {
   return (
     <Wrapper>
+      {!!recipe.images.length &&
       <Photos images={recipe.images}/>
+      }
 
       <Details recipe={recipe} />
     </Wrapper>
