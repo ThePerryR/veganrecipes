@@ -20,6 +20,7 @@ const Recipe = new mongoose.Schema({
     metadata: {
       prepTime: Number,
       cookTime: Number,
+      yield: Number,
     }
   },
   {

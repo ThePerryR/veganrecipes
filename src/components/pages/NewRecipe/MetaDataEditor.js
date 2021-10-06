@@ -68,6 +68,14 @@ function MetaDataEditor ({ category, setCategory, metadata, setMetadata}) {
           onChange={e => setMetadata({...metadata, cookTime: e.target.value})}
         />
       </div>
+      <div style={{width: 160}}>
+        <Sublabel>Number of servings?</Sublabel>
+        <Input
+          type='number'
+          value={metadata.yield || ''}
+          onChange={e => setMetadata({...metadata, yield: e.target.value})}
+        />
+      </div>
     </Wrapper>
   )
 }

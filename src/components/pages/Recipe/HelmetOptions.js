@@ -37,7 +37,7 @@ function HelmetOptions ({ recipe }) {
           'cookTime': recipe.metadata.cookTime ? `PT${recipe.metadata.cookTime}M` : '',
           'totalTime': recipe.metadata.cookTime ? `PT${recipe.metadata.cookTime + (recipe.metadata.prepTime || 0)}M` : '',
           keywords: 'vegan',
-          // 'recipeYield': '10',
+          'recipeYield': recipe.metadata.yield,
           recipeCategory: recipe.category && categories.find(({ value }) => value === recipe.category).label,
           recipeCuisine: 'Vegan',
           /*
