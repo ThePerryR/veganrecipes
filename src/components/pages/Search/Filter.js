@@ -15,6 +15,14 @@ const Wrapper = styled.div`
   height: 64px;
   padding-left: 32px;
   padding-right: 32px;
+
+
+  @media (max-width: 736px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 `
 
 function Filter () {

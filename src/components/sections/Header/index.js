@@ -16,6 +16,13 @@ const Wrapper = styled.div`
   padding-right: 32px;
   background: white;
 
+
+  @media (max-width: 736px) {
+    height: 64px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   @media print {
     display: none;
   }
@@ -47,8 +54,23 @@ const Right = styled.div`
   }
 `
 
+const Logo = styled.img`
+  height: 32px;
+  margin-bottom: -10px;
+  margin-right: 24px;
+  
+  @media (max-width: 736px) {
+    height: 16px;
+    margin-bottom: -6px;
+  }
+`
+
 const SearchWrapper = styled.div`
   width: 320px;
+
+  @media (max-width: 736px) {
+    display: none;
+  }
 `
 
 function Header ({ initialSearch }) {
@@ -58,7 +80,7 @@ function Header ({ initialSearch }) {
     <Wrapper>
       <Left>
         <Link to="/">
-          <img alt='EasyVgn' src="/logo.svg" style={{ height: 32, marginBottom: -10, marginRight: 24 }}/>
+          <Logo alt='EasyVgn' src="/logo.svg"/>
         </Link>
         <SearchWrapper>
           <Search initialSearch={initialSearch}/>

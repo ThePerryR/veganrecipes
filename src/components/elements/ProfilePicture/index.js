@@ -5,6 +5,9 @@ import { Image } from 'cloudinary-react'
 
 const Wrapper = styled(Image)`
   border-radius: 50%;
+  @media print {
+    display: none;
+  }
 `
 
 function ProfilePicture ({ id, size, styles }) {

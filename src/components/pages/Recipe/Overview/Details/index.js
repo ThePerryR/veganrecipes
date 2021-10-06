@@ -110,7 +110,11 @@ function Details ({ recipe }) {
 
       <Link to={`/u/${recipe.author.id}`}>
         <Profile>
-          <ProfilePicture id={recipe.author.profilePicture} size={24} styles={{ marginRight: 6 }}/>
+          <ProfilePicture
+            id={recipe.author.profilePicture}
+            size={24}
+            styles={{ marginRight: 6 }}
+          />
           <AuthorName>{recipe.author.displayName}</AuthorName>
         </Profile>
       </Link>

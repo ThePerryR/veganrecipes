@@ -17,6 +17,11 @@ const Wrapper = styled.div`
 const GridWrapper = styled.div`
   padding-left: 32px;
   padding-right: 32px;
+  
+  @media (max-width: 736px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `
 
 function Search () {

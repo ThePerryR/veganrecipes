@@ -11,6 +11,11 @@ const Wrapper = styled.div`
   align-self: flex-end;
   width: 100%;
   max-width: 320px;
+  @media print {
+    flex-direction: row;
+    max-width: 100%;
+    margin-top: 24px;
+  }
 `
 
 const Row = styled.div`
@@ -20,6 +25,16 @@ const Row = styled.div`
   width: 100%;
   font-size: 13px;
   margin-bottom: 8px;
+  @media print {
+    width: initial;
+    margin-right: 16px;
+    font-size: 12px;
+    > div:first-child {
+      margin-right: 4px;
+      font-weight: 700;
+      opacity: 0.64;
+    }
+  }
 `
 
 function MetaData ({ recipe }) {
