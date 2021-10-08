@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Prompt } from 'react-router-dom'
 
 import InputWithLabel from '../../elements/InputWithLabel'
 import TextareaWithLabel from '../../elements/TextareaWithLabel'
@@ -68,6 +68,10 @@ function NewRecipe () {
 
   return (
     <Wrapper>
+      <Prompt
+        when={name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label)}
+        message='Are you sure you want to leave without creating your recipe?'
+      />
       <h5>New Recipe</h5>
       <InputWithLabel
         label="Recipe name"

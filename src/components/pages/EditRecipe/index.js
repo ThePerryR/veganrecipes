@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Prompt, useParams } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
 
 import { useRootStore } from '../../RootStoreProvider'
@@ -46,7 +46,8 @@ const returnIngredientObject = ({ ingredient, quantity, unit, prep }) => {
 function EditRecipe () {
   const { id } = useParams()
   const [saving, setSaving] = useState(false)
-  const [recipe, setRecipe] = useState()
+  const [isChanged, setIsChanged] = useState(false)
+  const [recipe, updateRecipe] = useState()
   const [ingredients, setIngredients] = useState([])
   const [instructions, setInstructions] = useState([])
   const rootStore = useRootStore()
@@ -54,7 +55,7 @@ function EditRecipe () {
   useEffect(() => {
     async function fetchRecipe () {
       const recipe = await rootStore.transportLayer.fetchRecipe(id)
-      setRecipe(recipe)
+      updateRecipe(recipe)
       setInstructions(recipe.instructions.map((label, i) => ({ label, index: i + 1 })))
       setIngredients(recipe.ingredients.map((data, i) => ({ ...data, index: i + 1 })))
     }
@@ -62,9 +63,17 @@ function EditRecipe () {
     fetchRecipe()
   }, [id])
 
+  function setRecipe (recipe) {
+    updateRecipe(recipe)
+    if (!isChanged) {
+      setIsChanged(true)
+    }
+  }
+
   async function save () {
     if (!saving) {
       setSaving(true)
+      setIsChanged(false)
       const json = await rootStore.transportLayer.updateRecipe(recipe._id, {
         name: recipe.name,
         description: recipe.description,
@@ -85,6 +94,10 @@ function EditRecipe () {
   }
   return (
     <Wrapper>
+      <Prompt
+        when={isChanged}
+        message="Are you sure you want to leave without creating your recipe?"
+      />
       <Link to={`/r/${id}`}>
         <Breadcrumbs><AiOutlineLeft size={17} style={{ marginRight: 4 }}/> Back to recipe</Breadcrumbs>
       </Link>
