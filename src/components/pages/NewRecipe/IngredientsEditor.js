@@ -159,7 +159,7 @@ function IngredientsEditor ({ ingredients, setIngredients }) {
                         />
                         <Input
                           style={{ width: 180 }}
-                          value={ingredient.prep}
+                          value={ingredient.prep || ''}
                           placeholder='peeled and cubed'
                           onChange={(e) => updateIngredient(i, 'prep', e.target.value)}
                         />

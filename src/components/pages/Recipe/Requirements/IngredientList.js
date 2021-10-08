@@ -67,6 +67,7 @@ function roundQuantity (amount, unit) {
 function IngredientList ({ ingredients, metadata }) {
   const [convertOpen, setConvertOpen] = useState(false)
   const [conversion, setConversion] = useState(1)
+  console.log(111, ingredients)
   return (
     <Wrapper>
       <Label>Ingredients</Label>

@@ -34,12 +34,13 @@ const Breadcrumbs = styled.div`
 `
 
 
-const returnIngredientObject = ({ ingredient, quantity, unit }) => {
+const returnIngredientObject = ({ ingredient, quantity, unit, prep }) => {
   const obj = { ingredient }
   if (quantity) {
     obj.quantity = Number(quantity)
   }
   if (unit) obj.unit = unit
+  if (prep) obj.prep = prep
   return obj
 }
 
@@ -54,6 +55,7 @@ function EditRecipe () {
   useEffect(() => {
     async function fetchRecipe () {
       const recipe = await rootStore.transportLayer.fetchRecipe(id)
+      console.log('rrrr', recipe)
       setRecipe(recipe)
       setInstructions(recipe.instructions.map((label, i) => ({ label, index: i + 1 })))
       setIngredients(recipe.ingredients.map((data, i) => ({ ...data, index: i + 1 })))
@@ -65,7 +67,7 @@ function EditRecipe () {
   async function save () {
     if (!saving) {
       setSaving(true)
-      await rootStore.transportLayer.updateRecipe(recipe._id, {
+      const json = await rootStore.transportLayer.updateRecipe(recipe._id, {
         name: recipe.name,
         description: recipe.description,
         images: recipe.images,
@@ -74,6 +76,7 @@ function EditRecipe () {
         ingredients: ingredients.map(returnIngredientObject),
         instructions: instructions.map(({ label }) => label)
       })
+      rootStore.recipeStore.addRecipeFromJSON(json)
       rootStore.notyf.success('This recipe has been updated!')
       setSaving(false)
     }
