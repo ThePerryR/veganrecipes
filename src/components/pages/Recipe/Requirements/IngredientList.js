@@ -104,7 +104,8 @@ function IngredientList ({ ingredients, metadata }) {
 }
 
 IngredientList.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  metadata: PropTypes.object.isRequired
 }
 
 export default IngredientList

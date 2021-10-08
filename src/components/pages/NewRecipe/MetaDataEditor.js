@@ -19,13 +19,6 @@ const Wrapper = styled.div`
   }
 `
 
-const Label = styled.div`
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-  margin-bottom: 16px;
-  color: #5e5e5e;
-`
 const Sublabel = styled.div`
   font-size: 13px;
   line-height: 24px;
@@ -82,7 +75,8 @@ function MetaDataEditor ({ category, setCategory, metadata, setMetadata }) {
 
 MetaDataEditor.propTypes = {
   category: PropTypes.string.isRequired,
-  setCategory: PropTypes.func.isRequired
+  setCategory: PropTypes.func.isRequired,
+  metadata: PropTypes.object.isRequired
 }
 
 export default MetaDataEditor

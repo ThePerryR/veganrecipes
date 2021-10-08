@@ -1,7 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
 import User from '../../schemas/User'
-import attemptLogin from './attemptLogin'
 import mail from '../mail'
 
 export default function (req, res, next) {

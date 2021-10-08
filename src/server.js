@@ -10,7 +10,6 @@ import favicon from 'serve-favicon'
 import compression from 'compression'
 import scraper from 'recipe-scraper'
 import { parse } from 'recipe-ingredient-parser-v3'
-import cheerio from 'cheerio'
 
 import serveReactApp from './utils/serveReactApp'
 import register from './utils/auth/register'

@@ -1,4 +1,3 @@
-import slugify from 'slugify'
 import Recipe from '../../schemas/Recipe'
 import generateSlug from '../../utils/generateSlug'
 
