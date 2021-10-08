@@ -60,14 +60,12 @@ const Range = styled.input`
 `
 
 function roundQuantity (amount, unit) {
-
   return Math.round(amount * 100) / 100
 }
 
 function IngredientList ({ ingredients, metadata }) {
   const [convertOpen, setConvertOpen] = useState(false)
   const [conversion, setConversion] = useState(1)
-  console.log(111, ingredients)
   return (
     <Wrapper>
       <Label>Ingredients</Label>

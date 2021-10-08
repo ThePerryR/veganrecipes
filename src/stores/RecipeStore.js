@@ -80,6 +80,9 @@ export class Recipe {
     this.ingredients = json.ingredients || []
     this.instructions = json.instructions || []
     this.images = json.images || []
+    if (!this.images.length) {
+      this.images.push('w9mhgqebbnohne5smeaj')
+    }
     this.ratingValue = json.ratingValue || 0
     this.ratingCount = json.ratingCount || 0
     this.favoriteCount = json.favoriteCount || 0

@@ -39,41 +39,41 @@ const Input = styled.input`
   padding-left: 10px;
 `
 
-function MetaDataEditor ({ category, setCategory, metadata, setMetadata}) {
+function MetaDataEditor ({ category, setCategory, metadata, setMetadata }) {
   return (
     <Wrapper>
       <div>
         <Sublabel>Category</Sublabel>
         <Select
           top
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
           value={category}
           onChangeValue={setCategory}
           options={[{ label: 'Select a category...', value: '' }, ...categories]}
         />
       </div>
-      <div style={{width: 160}}>
+      <div style={{ width: 160 }}>
         <Sublabel>Prep time (minutes)</Sublabel>
         <Input
           type='number'
           value={metadata.prepTime || ''}
-          onChange={e => setMetadata({...metadata, prepTime: e.target.value})}
+          onChange={e => setMetadata({ ...metadata, prepTime: e.target.value })}
         />
       </div>
-      <div style={{width: 160}}>
+      <div style={{ width: 160 }}>
         <Sublabel>Cook time (minutes)</Sublabel>
         <Input
           type='number'
           value={metadata.cookTime || ''}
-          onChange={e => setMetadata({...metadata, cookTime: e.target.value})}
+          onChange={e => setMetadata({ ...metadata, cookTime: e.target.value })}
         />
       </div>
-      <div style={{width: 160}}>
+      <div style={{ width: 160 }}>
         <Sublabel>Number of servings?</Sublabel>
         <Input
           type='number'
           value={metadata.yield || ''}
-          onChange={e => setMetadata({...metadata, yield: e.target.value})}
+          onChange={e => setMetadata({ ...metadata, yield: e.target.value })}
         />
       </div>
     </Wrapper>

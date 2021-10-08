@@ -33,7 +33,6 @@ const Breadcrumbs = styled.div`
   margin-bottom: 16px;
 `
 
-
 const returnIngredientObject = ({ ingredient, quantity, unit, prep }) => {
   const obj = { ingredient }
   if (quantity) {
@@ -55,7 +54,6 @@ function EditRecipe () {
   useEffect(() => {
     async function fetchRecipe () {
       const recipe = await rootStore.transportLayer.fetchRecipe(id)
-      console.log('rrrr', recipe)
       setRecipe(recipe)
       setInstructions(recipe.instructions.map((label, i) => ({ label, index: i + 1 })))
       setIngredients(recipe.ingredients.map((data, i) => ({ ...data, index: i + 1 })))

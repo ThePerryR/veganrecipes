@@ -21,7 +21,6 @@ const Description = styled.div`
   opacity: 0.8;
 `
 
-
 function ConfirmEmail () {
   return (
     <Wrapper>

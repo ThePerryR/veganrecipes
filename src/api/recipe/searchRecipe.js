@@ -7,9 +7,8 @@ async function searchRecipe (req, res) {
         index: 'search',
         text: {
           query: req.params.query,
-          path: {
-            wildcard: '*'
-          }
+          path: ['name', 'description'],
+          fuzzy: {}
         }
       }
     },

@@ -52,7 +52,7 @@ function Register () {
     try {
       const { success } = await store.transportLayer.register(email, password, displayName)
       if (success) {
-        history.push(`/register/confirm`)
+        history.push('/register/confirm')
         setSubmitting(false)
       }
     } catch (err) {

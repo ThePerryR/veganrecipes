@@ -90,7 +90,7 @@ function Search ({ initialSearch }) {
   useEffect(() => {
     search = throttle(400, false, async (query) => {
       const recipes = await rootStore.transportLayer.searchRecipes(query)
-      setRecipes(recipes)
+      setRecipes(recipes.map(r => ({ ...r, images: r.images.length ? r.images : ['w9mhgqebbnohne5smeaj'] })))
     }, false)
   }, [])
   return (

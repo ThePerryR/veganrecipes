@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid'
 
 import User from '../../schemas/User'
 import attemptLogin from './attemptLogin'
@@ -36,7 +36,7 @@ export default function (req, res, next) {
         return res.status(500).json({ err: { email: true } })
       }
 
-      mail(req.body.email, 'welcome', {name: user.displayName, action_url: `https://www.easyvgn.com/confirm-email?token=${validationId}`})
+      mail(req.body.email, 'welcome', { name: user.displayName, action_url: `https://www.easyvgn.com/confirm-email?token=${validationId}` })
 
       res.json({ success: true })
 

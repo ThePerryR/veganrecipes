@@ -2,7 +2,7 @@ import slugify from 'slugify'
 
 import Recipe from '../schemas/Recipe'
 
-async function generateSlug(name) {
+async function generateSlug (name) {
   const slug = slugify(name, { lower: true, strict: true })
   let unique = false
   let number = 0
