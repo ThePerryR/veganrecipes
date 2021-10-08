@@ -66,10 +66,13 @@ function NewRecipe () {
     history.push(`/r/${recipe.slug}`)
   }
 
+
+  console.log(name, description, ingredients.find(({ingredient}) => !!ingredient), instructions.find(({label}) => !!label))
+
   return (
     <Wrapper>
       <Prompt
-        when={name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label)}
+        when={!!(name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label))}
         message='Are you sure you want to leave without creating your recipe?'
       />
       <h5>New Recipe</h5>
