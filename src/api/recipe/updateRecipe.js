@@ -17,6 +17,7 @@ async function updateRecipe (req, res) {
   if (![null, undefined].includes(req.body.metadata)) recipe.metadata = req.body.metadata
   await recipe.save()
   res.json(recipe)
+  fetch('https://www.google.com/ping?sitemap=https://www.easyvgn.com/sitemap.xml')
 }
 
 export default updateRecipe

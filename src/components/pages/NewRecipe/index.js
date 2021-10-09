@@ -50,6 +50,7 @@ function NewRecipe () {
   const [category, setCategory] = useState('')
   const [images, setImages] = useState([])
   const [metadata, setMetadata] = useState({})
+  const [submitted, setSubmitted] = useState(false)
   const [ingredients, setIngredients] = useState([
     { quantity: '', unit: '', ingredient: '', prep: '', index: 0 }
   ])
@@ -63,6 +64,7 @@ function NewRecipe () {
   async function submit () {
     const json = await rootStore.transportLayer.createRecipe(name, description, category, images, ingredients.filter(hasLabel).map(returnLabel), instructions.filter(({ label }) => !!label).map(({ label }) => label), metadata)
     const recipe = rootStore.recipeStore.addRecipeFromJSON(json)
+    setSubmitted(true)
     history.push(`/r/${recipe.slug}`)
   }
 
@@ -72,7 +74,7 @@ function NewRecipe () {
   return (
     <Wrapper>
       <Prompt
-        when={!!(name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label))}
+        when={!submitted && !!(name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label))}
         message='Are you sure you want to leave without creating your recipe?'
       />
       <h5>New Recipe</h5>
