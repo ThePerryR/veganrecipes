@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory, Prompt } from 'react-router-dom'
 
@@ -68,14 +68,11 @@ function NewRecipe () {
     history.push(`/r/${recipe.slug}`)
   }
 
-
-  console.log(name, description, ingredients.find(({ingredient}) => !!ingredient), instructions.find(({label}) => !!label))
-
   return (
     <Wrapper>
       <Prompt
-        when={!submitted && !!(name || description || ingredients.find(({ingredient}) => !!ingredient) || instructions.find(({label}) => !!label))}
-        message='Are you sure you want to leave without creating your recipe?'
+        when={!submitted && !!(name || description || ingredients.find(({ ingredient }) => !!ingredient) || instructions.find(({ label }) => !!label))}
+        message="Are you sure you want to leave without creating your recipe?"
       />
       <h5>New Recipe</h5>
       <InputWithLabel

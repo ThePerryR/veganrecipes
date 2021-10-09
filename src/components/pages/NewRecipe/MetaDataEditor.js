@@ -76,6 +76,7 @@ function MetaDataEditor ({ category, setCategory, metadata, setMetadata }) {
 MetaDataEditor.propTypes = {
   category: PropTypes.string.isRequired,
   setCategory: PropTypes.func.isRequired,
+  setMetadata: PropTypes.func.isRequired,
   metadata: PropTypes.object.isRequired
 }
 
