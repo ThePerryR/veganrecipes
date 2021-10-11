@@ -44,6 +44,7 @@ function Photos ({ images }) {
         publicId={images[imageIndex]}
         crop="crop"
         gravity="custom"
+        secure='true'
       />
       }
       {images.length > 1 &&
@@ -55,6 +56,7 @@ function Photos ({ images }) {
               publicId={publicId}
               crop="crop"
               gravity="custom"
+              secure='true'
             />
           </div>
         ))}

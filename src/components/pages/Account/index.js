@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
 import { useRootStore } from '../../RootStoreProvider'
@@ -25,6 +26,13 @@ const Label = styled.div`
   margin-bottom: 12px;
 `
 
+const Add = styled.div`
+  color: #006fff;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 32px;
+`
+
 let uploadWidget
 
 function Account () {
@@ -32,6 +40,8 @@ function Account () {
   const currentUser = rootStore.userStore.currentUser
   const [profilePicture, setProfilePicture] = useState(currentUser.profilePicture)
   const [displayName, setDisplayName] = useState(currentUser.displayName)
+  const [urls, setUrls] = useState(currentUser.urls)
+  const [about, setAbout] = useState(currentUser.about)
   const [saving, setSaving] = useState(false)
   const widgetCallback = (err, result) => {
     if (err) {
@@ -57,6 +67,8 @@ function Account () {
     setSaving(true)
     currentUser.profilePicture = profilePicture
     currentUser.displayName = displayName
+    currentUser.about = about
+    currentUser.urls = urls.filter(url => !!url)
     await rootStore.transportLayer.updateUser(currentUser.id, currentUser.asJSON)
     setSaving(false)
     rootStore.notyf.success('Your profile has been updated.')
@@ -74,6 +86,34 @@ function Account () {
         onChange={e => setDisplayName(e.target.value)}
         style={{ marginBottom: 32 }}
       />
+      <Label>About</Label>
+      <textarea
+        value={about}
+        onChange={e => setAbout(e.target.value)}
+        style={{ marginBottom: 32, height: 120 }}
+      />
+      <Label>Links</Label>
+      {urls.map((url, i) => (
+        <input
+          style={{height: 40, fontSize: 13, paddingLeft: 8, marginBottom: 8}}
+          value={url}
+          key={i}
+          onChange={e => {
+            const arr = Array.from(urls)
+            arr[i] = e.target.value
+            setUrls(arr)
+          }}
+        />
+      ))}
+      <Add
+      onClick={() => {
+        const arr = Array.from(urls)
+        arr.push('')
+        setUrls(arr)
+      }}>
+        + Add URL to your profile
+      </Add>
+
       <Button label={saving ? 'Saving...' : 'Save Profile'} disabled={saving} onClick={save}/>
     </Wrapper>
   )

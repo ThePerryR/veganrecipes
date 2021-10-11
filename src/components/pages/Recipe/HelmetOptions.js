@@ -10,7 +10,7 @@ function HelmetOptions ({ recipe }) {
       <title>{recipe.name} | EasyVgn</title>
       <meta name="description" content={recipe.description}/>
       <meta property="og:type" content="website"/>
-      <meta property="og:title" content={`${recipe.name} | EasyVgn`}/>
+      <meta property="og:title" content={`Vegan ${recipe.name}`}/>
       <meta property="og:description" content={recipe.description}/>
       <meta property="og:url" content={recipe.url}/>
       {recipe.images[0] &&

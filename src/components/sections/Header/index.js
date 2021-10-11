@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { useRootStore } from '../../RootStoreProvider'
@@ -74,8 +74,13 @@ const SearchWrapper = styled.div`
 `
 
 function Header ({ initialSearch }) {
+  const history = useHistory()
   const { userStore } = useRootStore()
+  const [path, setPath] = useState(history.location.pathname)
   const currentUser = userStore.currentUser
+  history.listen((location) => {
+    setPath(location.pathname)
+  })
   return (
     <Wrapper>
       <Left>
@@ -87,7 +92,7 @@ function Header ({ initialSearch }) {
         </SearchWrapper>
       </Left>
       <Right>
-        {!currentUser && <StyledLink to="/login"><b>Login</b></StyledLink>}
+        {!currentUser && <StyledLink to={`/login?return=${path}`}><b>Login</b></StyledLink>}
         <StyledLink to={currentUser ? '/new-recipe' : '/register'}>
           {currentUser ? 'Add a recipe' : 'Register'}
         </StyledLink>

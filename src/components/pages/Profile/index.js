@@ -20,12 +20,21 @@ const Personal = styled.div`
 
 `
 
-const Name = styled.div`
+const Name = styled.h1`
   font-size: 32px;
   font-weight: 700;
+  margin-bottom: 8px;
+`
+const About = styled.h5`
+  font-size: 16px;
+  font-weight: 400;
 `
 
 const Info = styled.div`
+  display: flex;
+`
+
+const Links = styled.div`
   display: flex;
 `
 
@@ -59,6 +68,10 @@ function Profile () {
           <ProfilePicture id={user.profilePicture} size={120} styles={{ marginRight: 24 }}/>
           <Personal>
             <Name>{user.displayName}</Name>
+            <About>{user.about}</About>
+            <Links>
+
+            </Links>
           </Personal>
         </Info>
         {canEdit &&

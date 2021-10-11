@@ -17,6 +17,7 @@ function ProfilePicture ({ id, size, styles }) {
       publicId={id || 'xvewyrcrl1wzo9vwor2g'}
       crop="crop"
       gravity="custom"
+      secure='true'
       style={{ height: size, width: size, ...styles }}
     />
   )

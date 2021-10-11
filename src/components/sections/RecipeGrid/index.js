@@ -73,6 +73,7 @@ function RecipeGrid ({ recipes }) {
                 crop="crop"
                 gravity="custom"
                 style={{ width: '100%' }}
+                secure={true}
               />
               }
             </Thumbnail>
