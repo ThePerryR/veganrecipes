@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { Helmet } from 'react-helmet'

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useRootStore } from '../../RootStoreProvider'
 import Button from '../../elements/Button'
 import ErrorMessage from '../../elements/ErrorMessage'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
 import useQuery from '../../../utils/hooks/useQuery'
 
 const Wrapper = styled.div`

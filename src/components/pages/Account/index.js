@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { FaExternalLinkAlt } from 'react-icons/fa'
 
 import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
 import { useRootStore } from '../../RootStoreProvider'
@@ -95,7 +94,7 @@ function Account () {
       <Label>Links</Label>
       {urls.map((url, i) => (
         <input
-          style={{height: 40, fontSize: 13, paddingLeft: 8, marginBottom: 8}}
+          style={{ height: 40, fontSize: 13, paddingLeft: 8, marginBottom: 8 }}
           value={url}
           key={i}
           onChange={e => {
