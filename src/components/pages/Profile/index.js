@@ -70,7 +70,7 @@ function Profile () {
       </Helmet>
       <Top>
         <Info>
-          <ProfilePicture id={user.profilePicture} size={120} styles={{ marginRight: 24 }}/>
+          <ProfilePicture name={user.displayName} id={user.profilePicture} size={120} styles={{ marginRight: 24 }}/>
           <Personal>
             <Name>{user.displayName}</Name>
             <About>{user.about}</About>

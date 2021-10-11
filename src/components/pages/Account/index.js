@@ -76,7 +76,12 @@ function Account () {
   return (
     <Wrapper>
       <ImageSection>
-        <ProfilePicture id={profilePicture} size={80} styles={{ marginRight: 24 }}/>
+        <ProfilePicture
+          id={profilePicture}
+          size={80}
+          styles={{ marginRight: 24 }}
+          name={currentUser.displayName}
+        />
         <Button label="Upload new photo" onClick={() => uploadWidget.open()}/>
       </ImageSection>
       <Label>Display Name</Label>

@@ -57,7 +57,7 @@ function UserDropdown ({ user }) {
   return (
     <Wrapper>
       <Link to={`/u/${user.id}`}>
-        <ProfilePicture id={user.profilePicture} size={40}/>
+        <ProfilePicture name={user.displayName} id={user.profilePicture} size={40}/>
       </Link>
       <Dropdown>
         <Arrow/>

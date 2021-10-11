@@ -111,6 +111,7 @@ function Details ({ recipe }) {
       <Link to={`/u/${recipe.author.id}`}>
         <Profile>
           <ProfilePicture
+            name={recipe.author.displayName}
             id={recipe.author.profilePicture}
             size={24}
             styles={{ marginRight: 6 }}

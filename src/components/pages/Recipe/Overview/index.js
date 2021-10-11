@@ -30,7 +30,7 @@ function Overview ({ recipe }) {
   return (
     <Wrapper>
       {!!recipe.images.length &&
-      <Photos images={recipe.images}/>
+      <Photos images={recipe.images} recipeName={recipe.name}/>
       }
 
       <Details recipe={recipe} />

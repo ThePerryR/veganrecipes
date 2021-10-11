@@ -33,7 +33,7 @@ const Thumbnail = styled(Image)`
   cursor: pointer;
 `
 
-function Photos ({ images }) {
+function Photos ({ images, recipeName }) {
   const [imageIndex, setImageIndex] = useState(0)
   return (
     <Wrapper>
@@ -45,6 +45,7 @@ function Photos ({ images }) {
         crop="crop"
         gravity="custom"
         secure='true'
+        alt={recipeName}
       />
       }
       {images.length > 1 &&
@@ -67,7 +68,8 @@ function Photos ({ images }) {
 }
 
 Photos.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  recipeName: PropTypes.string.isRequired
 }
 
 export default Photos

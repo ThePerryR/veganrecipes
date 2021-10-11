@@ -74,11 +74,13 @@ function RecipeGrid ({ recipes }) {
                 gravity="custom"
                 style={{ width: '100%' }}
                 secure={true}
+                alt={recipe.name}
               />
               }
             </Thumbnail>
             <Details>
               <ProfilePicture
+                name={recipe.author.displayName}
                 size={48}
                 id={recipe.author.profilePicture}
                 styles={{ flexShrink: 0, marginRight: 8 }}

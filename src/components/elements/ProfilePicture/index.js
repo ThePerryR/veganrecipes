@@ -10,9 +10,10 @@ const Wrapper = styled(Image)`
   }
 `
 
-function ProfilePicture ({ id, size, styles }) {
+function ProfilePicture ({ id, size, styles, name }) {
   return (
     <Wrapper
+      alt={name || 'EasyVgn Author'}
       cloudName="easyvgn"
       publicId={id || 'xvewyrcrl1wzo9vwor2g'}
       crop="crop"
