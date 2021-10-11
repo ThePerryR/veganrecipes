@@ -6,6 +6,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import Button from '../../elements/Button'
 import ErrorMessage from '../../elements/ErrorMessage'
 import { useHistory } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const Wrapper = styled.div`
   display: flex;
@@ -64,6 +65,11 @@ function Register () {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>Sign up for EasyVgn</title>
+        <meta name='description' content='Join EasyVgn to share recipes, save favorites, and create reviews.' />
+      </Helmet>
+
       <h4 style={{ marginBottom: 40 }}>Sign up</h4>
       <Form>
         <FormSection>

@@ -6,6 +6,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import RecipeGrid from '../../sections/RecipeGrid'
 import Button from '../../elements/Button'
 import ProfilePicture from '../../elements/ProfilePicture'
+import { Helmet } from 'react-helmet'
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -63,6 +64,10 @@ function Profile () {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{user.displayName}</title>
+        <meta name='description' content={user.about || `Explore vegan recipes created by ${user.displayName}.`} />
+      </Helmet>
       <Top>
         <Info>
           <ProfilePicture id={user.profilePicture} size={120} styles={{ marginRight: 24 }}/>

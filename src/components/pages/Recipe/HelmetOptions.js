@@ -8,7 +8,7 @@ function HelmetOptions ({ recipe }) {
   return (
     <Helmet>
       <title>{recipe.name} | EasyVgn</title>
-      <meta name="description" content={recipe.description}/>
+      <meta name="description" content={recipe.description || `Vegan ${recipe.name} recipe created by the EasyVgn community.`}/>
       <meta property="og:type" content="website"/>
       <meta property="og:title" content={`Vegan ${recipe.name}`}/>
       <meta property="og:description" content={recipe.description}/>

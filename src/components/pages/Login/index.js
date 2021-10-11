@@ -5,6 +5,7 @@ import { useRootStore } from '../../RootStoreProvider'
 import Button from '../../elements/Button'
 import ErrorMessage from '../../elements/ErrorMessage'
 import useQuery from '../../../utils/hooks/useQuery'
+import { Helmet } from 'react-helmet'
 
 const Wrapper = styled.div`
   display: flex;
@@ -59,6 +60,10 @@ function Login () {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>Login to EasyVgn</title>
+        <meta name='description' content='Login to EasyVgn to share recipes, save favorites, and create reviews.' />
+      </Helmet>
       <h4 style={{ marginBottom: 40 }}>Welcome Back</h4>
       <Form>
         <FormSection>
