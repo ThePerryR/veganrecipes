@@ -137,7 +137,7 @@ function Router () {
       <Wrapper>
         <Main>
           <Header initialSearch={rootStore.initialSearch}/>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <Switch>
               <Route
                 path="/new-recipe"

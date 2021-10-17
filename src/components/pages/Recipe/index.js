@@ -8,6 +8,7 @@ import HelmetOptions from './HelmetOptions'
 import Overview from './Overview'
 import Requirements from './Requirements'
 import Button from '../../elements/Button'
+import RecipeNotFound from '../../sections/RecipeNotFound'
 
 const Wrapper = styled.div`
   padding: 56px;
@@ -37,12 +38,13 @@ function Recipe () {
 
   useEffect(() => {
     async function fetchRecipe () {
-      const json = await rootStore.transportLayer.fetchRecipe(id)
-      if (!json) {
-        return setMissing(true)
+      console.log('aaa')
+      try {
+        const json = await rootStore.transportLayer.fetchRecipe(id)
+        rootStore.recipeStore.addRecipeFromJSON(json)
+      } catch (err) {
+        setMissing(true)
       }
-
-      rootStore.recipeStore.addRecipeFromJSON(json)
     }
 
     if (!rootStore.recipeStore.find(id)) {
@@ -59,7 +61,7 @@ function Recipe () {
 
   if (missing) {
     return (
-      <div>Sorry, this recipe could not be found.</div>
+      <RecipeNotFound/>
     )
   }
 

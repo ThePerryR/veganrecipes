@@ -30,6 +30,12 @@ const Wrapper = styled.div`
 
 const StyledLink = styled(Link)`
   font-size: 13px;
+  padding: 8px 12px;
+  background: none;
+  transition: all 80ms linear;
+  &:hover {
+    background: #f7f7f7;
+  }
 `
 const Left = styled.div`
   display: flex;
@@ -41,8 +47,8 @@ const Right = styled.div`
   align-items: center;
 
   a {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
 
     &:first-child {
       margin-left: 0;
@@ -56,7 +62,7 @@ const Right = styled.div`
 
 const Logo = styled.img`
   height: 32px;
-  margin-bottom: -10px;
+  margin-bottom: -12px;
   margin-right: 24px;
   
   @media (max-width: 736px) {

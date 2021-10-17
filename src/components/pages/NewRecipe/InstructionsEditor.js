@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { IoIosReorder } from 'react-icons/io'
+import uploadWidgetStyles from '../../../utils/uploadWidgetStyles'
 
 const Wrapper = styled.div`
   width: 50%;
@@ -42,6 +43,29 @@ const Reorder = styled.div`
   cursor: pointer;
 `
 
+const NewButton = styled.div`
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #cbcbcb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  text-align: center;
+
+  box-sizing: border-box;
+  font-size: 13px;
+  cursor: pointer;
+  color: grey;
+  transition: all 120ms linear;
+
+  &:hover {
+    border: 2px dashed grey;
+  }
+`
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -49,12 +73,33 @@ const reorder = (list, startIndex, endIndex) => {
   return result
 }
 
+let uploadWidget
 function InstructionsEditor ({ instructions, setInstructions }) {
   const onDragEnd = useCallback(({ source, destination }) => {
     if (source && destination) {
       setInstructions(reorder(instructions, source.index, destination.index))
     }
   }, [instructions])
+
+  const widgetCallback = (err, result) => {
+    if (err) {
+      return console.log(err)
+    }
+    if (result.event === 'success') {
+      console.log(result.info.public_id)
+    }
+  }
+  useEffect(() => {
+    uploadWidget = window.cloudinary.createUploadWidget({
+      cloudName: 'easyvgn',
+      uploadPreset: 'instruction-images-unsigned',
+      cropping: true,
+      cropping_aspect_ratio: 1,
+      showSkipCropButton: false,
+      sources: ['local', 'url', 'facebook', 'instagram'],
+      styles: uploadWidgetStyles
+    }, (err, result) => widgetCallback(err, result))
+  }, [])
 
   function updateInstructions (list) {
     const emptyInstructions = list.filter(instructions => !instructions.label)
@@ -105,6 +150,10 @@ function InstructionsEditor ({ instructions, setInstructions }) {
                           updateInstructions(list)
                         }}
                       />
+
+                      <NewButton onClick={() => uploadWidget.open()}>
+                        Add Image
+                      </NewButton>
                     </InstructionWrapper>
                   )}
                 </Draggable>

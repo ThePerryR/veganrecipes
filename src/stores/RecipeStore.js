@@ -63,6 +63,7 @@ export class Recipe {
       ratingCount: observable,
       ratingValue: observable,
       isFavorite: observable,
+      metadata: observable,
       category: observable,
       updatedAt: observable
     })

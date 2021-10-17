@@ -7,6 +7,7 @@ async function fetchRecipe (req, res) {
     { $match: { slug: req.params.slug } },
     ...populateRecipePage(req.user)
   ])
+  if (!recipe) return res.sendStatus(404)
   res.json(recipe)
 }
 
